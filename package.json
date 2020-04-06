@@ -1,7 +1,7 @@
 {
-  "name": "ree",
+  "name": "helloWorld",
   "version": "1.0.0",
-  "description": "REE PVPC",
+  "description": "helloWorld",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d -w",
