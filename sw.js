@@ -1,6 +1,7 @@
 var cacheName = 'hello-world-page';
 var filesToCache = [
   './',
+  './index.html',
   './hello-world.css',
   './main.js'
 ];
