@@ -1,5 +1,4 @@
 var cacheName = 'comprartim-v1.0.0'
-var cacheNameList = [cacheName];
 var filesToCache = [
   './',
   './index.html',
