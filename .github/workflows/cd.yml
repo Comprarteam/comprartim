@@ -2,8 +2,8 @@ name: CI-CD
 
 on:
   push:
-    tags:
-      - 'v1.*'
+    branches:
+      - master
 
 jobs:
   build-and-deploy:
