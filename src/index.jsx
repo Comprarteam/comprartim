@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './components/helloWorld';
+import Landing from './components/landing';
 
 ReactDOM.render(
-  <HelloWorld />,
+  <Landing />,
   document.getElementById('app'),
 );
