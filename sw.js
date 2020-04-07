@@ -1,4 +1,5 @@
-var cacheName = 'hello-world-page';
+var cacheName = 'comprartim-v1.0.0'
+var cacheNameList = [cacheName];
 var filesToCache = [
   './',
   './index.html',
@@ -16,6 +17,7 @@ self.addEventListener('install', function(e) {
 });
 self.addEventListener('activate',  event => {
   event.waitUntil(self.clients.claim());
+  // TODO: Clean old cache
 });
 self.addEventListener('fetch', event => {
   event.respondWith(
