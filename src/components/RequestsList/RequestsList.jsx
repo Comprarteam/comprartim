@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './requests.scss';
+import styles from './RequestsList.scss';
 
-const Requests = ({ routeProps }) => {
+const RequestsList = ({ routeProps }) => {
   const { communityId } = routeProps.match.params;
 
   return (
@@ -36,4 +36,4 @@ const Requests = ({ routeProps }) => {
   );
 };
 
-export default Requests;
+export default RequestsList;
