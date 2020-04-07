@@ -7,6 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server -d -w",
     "pro": "webpack -p",
+    "depploy:minor": "yarn version --minor && git push",
     "test": "jest",
     "coverage": "jest --coverage"
   },
