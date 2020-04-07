@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
 import Landing from './components/landing';
 import Requests from './components/requests';
+import './index.scss';
 
 ReactDOM.render(
   <HashRouter basename="/">
