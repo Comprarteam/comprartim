@@ -2,8 +2,8 @@ name: CI-CD
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 
 jobs:
   build-and-deploy:
@@ -15,13 +15,13 @@ jobs:
 
       - name: Install dependencies 📦
         run: npm install
-      
+
       - name: Run tests 🤖
         run: npm run test
-         
+
       - name: Build pro 🔧
         run: npm run pro
-        
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
