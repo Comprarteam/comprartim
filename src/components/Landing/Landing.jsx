@@ -9,6 +9,8 @@ const Landing = () => {
 
   return (
     <>
+      <div>Acces href</div>
+      <div>{document.location.href}</div>
       <h1 className="vertical-container">comp(Я)artim</h1>
       <div>
       Aquesta és una app per poder compartir les compres entre tots els veins
