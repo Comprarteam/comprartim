@@ -1,14 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import Header from '../Header/Header';
 
-const Community = ({ routeProps }) => {
-  const { communityId } = routeProps.match.params;
+const Community = () => {
+  const { communityId } = useParams();
 
   return (
     <>
-      <Link to={`/community/${communityId}/print`}>Imprimir</Link>
-      <h1 className="vertical-container">{`List of requests of community ${communityId}`}</h1>
-      <Link to="/new-request">Nova sol·licitud</Link>
+      <Header title="La meva comunitat" />
+      <div className="container">
+        <Link to={`/community/${communityId}/print`}>Imprimir</Link>
+        <h1 className="vertical-container">{`List of requests of community ${communityId}`}</h1>
+        <Link to="/new-request">Nova sol·licitud</Link>
+      </div>
     </>
   );
 };

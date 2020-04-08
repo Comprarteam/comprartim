@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { QRCode } from 'react-qr-svg';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Header from '../Header/Header';
 import styles from './PrintPage.scss';
 
 const PrintPage = () => {
@@ -9,17 +10,23 @@ const PrintPage = () => {
   const onClickRefresh = () => window.location.reload();
 
   useEffect(() => {
-    window.print();
+    // window.print();
   });
 
   return (
     <div className={styles['print-page']}>
       <div className={styles['non-printing-zone']}>
-        <div>
-          <Link className={styles['back-button']} to={`/community/${communityId}`}>Tornar</Link>
-        </div>
-        <div>
-          <button type="button" onClick={onClickRefresh}>Tornar a Imprimir</button>
+        <Header title="Imprimir" backUrl={`/community/${communityId}`} />
+        <div className={`container ${styles.container}`}>
+          <div className={styles['btn-wrapper']}>
+            <button
+              type="button"
+              onClick={onClickRefresh}
+              className="btn-large waves-effect waves-light indigo"
+            >
+              Tornar a Imprimir
+            </button>
+          </div>
         </div>
       </div>
       <div className={styles['printing-zone']}>

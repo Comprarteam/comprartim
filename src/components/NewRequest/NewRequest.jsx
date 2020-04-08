@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../Header/Header';
 import Category from './Category';
 
 const NewRequest = () => {
@@ -13,11 +14,14 @@ const NewRequest = () => {
   if (categorySelected === '') {
     return (
       <>
-        <div data-testid="NEW_REQUEST">NewRequest</div>
-        <Category
-          categoriesList={categoriesList}
-          onClickCategory={handleClickCategory}
-        />
+        <Header title="Nova sol·licitud" />
+        <div className="container">
+          <div data-testid="NEW_REQUEST">NewRequest</div>
+          <Category
+            categoriesList={categoriesList}
+            onClickCategory={handleClickCategory}
+          />
+        </div>
       </>
     );
   }

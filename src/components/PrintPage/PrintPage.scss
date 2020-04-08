@@ -1,8 +1,14 @@
 .print-page {
-  display: flex;
+  height: 100%;
+}
+
+.container {
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  display: flex;
+  height: 100%;
+}
+
+.non-printing-zone {
   height: 100%;
 }
 
@@ -10,7 +16,7 @@
   display: none;
 }
 
-.non-printing-zone {
+.btn-wrapper {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -25,6 +31,9 @@
 
   .printing-zone {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     flex-direction: column;
     font-size: 1.5rem;
     margin: 1.6cm;

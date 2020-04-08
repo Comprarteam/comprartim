@@ -12,6 +12,8 @@
   "rules": {
     "react/prop-types": ["error", { "ignore": [], "customValidators": [], "skipUndeclared": true }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./config/**", "**/*.config.*", "**/*.spec.*", "**/*.test.*"]}],
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/no-unescaped-entities": "off"
   },
   "settings": {
     "import/resolver": {
