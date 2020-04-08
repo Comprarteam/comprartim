@@ -6,7 +6,7 @@
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="food-icon-"], [class*="food-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'food' !important;
   speak: none;
@@ -22,21 +22,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-farmacia:before {
+.food-icon-farmacia:before {
   content: "\e900";
 }
-.icon-peix:before {
+.food-icon-peix:before {
   content: "\e901";
 }
-.icon-poma:before {
+.food-icon-poma:before {
   content: "\e902";
 }
-.icon-supermercat:before {
+.food-icon-supermercat:before {
   content: "\e903";
 }
-.icon-croissant:before {
+.food-icon-croissant:before {
   content: "\e904";
 }
-.icon-pollastre:before {
+.food-icon-pollastre:before {
   content: "\e905";
 }
