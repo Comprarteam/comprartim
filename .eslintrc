@@ -8,12 +8,10 @@
   "globals": {
     "document": true,
     "window": true,
-    "fetch": true
   },
   "rules": {
     "react/prop-types": ["error", { "ignore": [], "customValidators": [], "skipUndeclared": true }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./config/**", "**/*.config.*", "**/*.spec.*", "**/*.test.*"]}],
-    "jsx-a11y/anchor-is-valid": 0 // 'Link' as component name is not allowed by this rule
   },
   "settings": {
     "import/resolver": {
@@ -21,7 +19,7 @@
         "map": [
           ["components", "./src/components"]
         ],
-        "extensions": [".ts", ".js", ".jsx", ".json"]
+        "extensions": [".js", ".jsx", ".json"]
       }
     }
   }

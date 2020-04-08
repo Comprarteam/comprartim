@@ -8,7 +8,7 @@ import NewCommunity from './components/NewCommunity/NewCommunity';
 import NewRequest from './components/NewRequest/NewRequest';
 import NewUser from './components/NewUser/NewUser';
 import PrintPage from './components/PrintPage/PrintPage';
-import RequestsList from './components/RequestsList/RequestsList';
+import Community from './components/Community/Community';
 
 import './index.scss';
 
@@ -23,7 +23,7 @@ ReactDOM.render(
     <Route
       exact
       path="/community/:communityId/"
-      render={(routeProps) => <RequestsList routeProps={routeProps} />}
+      render={(routeProps) => <Community routeProps={routeProps} />}
     />
     <Route exact path="/" component={Landing} />
   </HashRouter>,
