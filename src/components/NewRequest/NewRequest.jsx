@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 import Header from '../Header/Header';
-import Category from './Category';
+import ChooseCategory from './ChooseCategory/ChooseCategory';
 
 const NewRequest = () => {
   const [categorySelected, setCategorySelected] = useState('');
   const categoriesList = ['farmacia', 'peix', 'poma', 'supermercat', 'croissant', 'pollastre'];
 
   const handleClickCategory = (categoryClicked) => {
-    console.log(categoryClicked);
     setCategorySelected(categoryClicked);
   };
 
-  if (categorySelected === '') {
-    return (
-      <>
-        <Header title="Nova sol·licitud" />
-        <div className="container">
-          <Category
-            categoriesList={categoriesList}
-            onClickCategory={handleClickCategory}
-          />
-        </div>
-      </>
-    );
-  }
-  return '';
+  return (
+    <>
+      <Header title="Nova sol·licitud" />
+      <div className="container">
+        {categorySelected === ''
+          ? (
+            <ChooseCategory
+              categoriesList={categoriesList}
+              onClickCategory={handleClickCategory}
+            />
+          ) : (
+            <div>{ categorySelected }</div>
+          )}
+      </div>
+    </>
+  );
 };
 
 export default NewRequest;
