@@ -7,5 +7,21 @@
 :global(body) {
   background: #f5f5f5;
   margin: 0;
-  font-family: Verdana, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
+}
+
+:global(h1) {
+  font-family: 'Lobster', cursive;
+}
+
+:global(h2) {
+  font-family: 'Permanent Marker', cursive;
+}
+
+:global(h5) {
+  font-weight: 900;
+}
+
+:global(.header) {
+  padding: 30px 0 20px;
 }
