@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styles from './NewCommunity.scss';
+import registerNewCommunity from '../../services/community';
 
 const NewCommunity = () => {
   const [nameCommunity, setNameCommunity] = useState('');
 
-  const handleClickRegister = () => {
-    console.log(nameCommunity);
+  const handleClickRegister = async () => {
+    const newCommunity = await registerNewCommunity(nameCommunity);
+    console.log(`id comunitat ${newCommunity.id}`);
   };
 
   return (
