@@ -12,7 +12,7 @@ const Category = ({ categoriesList, onClickCategory }) => (
         onClick={() => onClickCategory(category)}
         onKeyPress={() => onClickCategory(category)}
       >
-        <span className={`icon-${category}`} />
+        <span className={`food-icon-${category}`} />
         <span>{category}</span>
       </div>
     ))}

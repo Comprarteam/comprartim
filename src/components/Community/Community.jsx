@@ -9,7 +9,6 @@ const Community = () => {
     <>
       <Header title="La meva comunitat" />
       <div className="container">
-        <Link to={`/community/${communityId}/print`}>Imprimir</Link>
         <h1 className="vertical-container">{`List of requests of community ${communityId}`}</h1>
         <Link to="/new-request">Nova sol·licitud</Link>
       </div>

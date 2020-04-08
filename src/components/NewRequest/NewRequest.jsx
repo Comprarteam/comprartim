@@ -16,7 +16,6 @@ const NewRequest = () => {
       <>
         <Header title="Nova sol·licitud" />
         <div className="container">
-          <div data-testid="NEW_REQUEST">NewRequest</div>
           <Category
             categoriesList={categoriesList}
             onClickCategory={handleClickCategory}
