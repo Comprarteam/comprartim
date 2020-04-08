@@ -20,7 +20,7 @@ const Landing = () => {
       <div>
         <input type="text" onChange={onChange} />
       </div>
-      <Link to={`/requests/${pin}`}>Unir-se</Link>
+      <Link to={`/community/${pin}`}>Unir-se</Link>
     </>
   );
 };
