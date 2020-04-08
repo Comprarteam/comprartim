@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './NewCommunity.scss';
 import registerNewCommunity from '../../services/community';
 
 const NewCommunity = () => {
   const [nameCommunity, setNameCommunity] = useState('');
+  const history = useHistory();
 
   const handleClickRegister = async () => {
     const newCommunity = await registerNewCommunity(nameCommunity);
-    console.log(`id comunitat ${newCommunity.id}`);
+    history.push(`/community/${newCommunity.id}`);
   };
 
   return (
