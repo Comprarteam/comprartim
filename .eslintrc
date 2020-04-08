@@ -7,7 +7,7 @@
   },
   "globals": {
     "document": true,
-    "window": true,
+    "window": true
   },
   "rules": {
     "react/prop-types": ["error", { "ignore": [], "customValidators": [], "skipUndeclared": true }],
