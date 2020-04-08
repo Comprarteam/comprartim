@@ -10,10 +10,10 @@ const Landing = () => {
 
   return (
     <>
-      <div className="header indigo accent-2 white-text">
+      <div className={`${styles.header} indigo accent-2 white-text`}>
         <div className="container">
           <h1>comp(Я)artim</h1>
-          <h2>Evitem desplaçaments, evitem contagis</h2>
+          <h5>Evitem desplaçaments, evitem contagis</h5>
         </div>
       </div>
       <div className={`white ${styles['landing-block']}`}>
@@ -35,7 +35,7 @@ const Landing = () => {
             <div className="col s12 m6">
               <div className={styles['wrapper-block']}>
                 <i className={`material-icons ${styles['icon-block']}`}>group</i>
-                <div className={styles['title-block']}>Registra la teva comunitat</div>
+                <h5 className={styles['title-block']}>Registra la teva comunitat</h5>
                 <p className={styles['description-block']}>
                 Crea la teva comunitat per compartir els desplaçaments a les botigues
                 de proximitat.
@@ -45,7 +45,7 @@ const Landing = () => {
             <div className="col s12 m6">
               <div className={styles['wrapper-block']}>
                 <i className={`material-icons ${styles['icon-block']}`}>share</i>
-                <div className={styles['title-block']}>Comparteix la teva compra</div>
+                <h5 className={styles['title-block']}>Comparteix la teva compra</h5>
                 <p className={styles['description-block']}>
                 Afegeix tots els productes que necessites classificats per botiga i tingues
                 el control de saber si hi ha més veïns interessats en comprar al mateix lloc.
@@ -55,7 +55,7 @@ const Landing = () => {
             <div className="col s12 m6">
               <div className={styles['wrapper-block']}>
                 <i className={`material-icons ${styles['icon-block']}`}>format_list_bulleted</i>
-                <div className={styles['title-block']}>Tot en un sol lloc</div>
+                <h5 className={styles['title-block']}>Tot en un sol lloc</h5>
                 <p className={styles['description-block']}>
                   Veu faciliment quines compres hi ha pendents de fer a la teva comunitat
                   i ofereix-te per anar a comprar.
@@ -65,7 +65,7 @@ const Landing = () => {
             <div className="col s12 m6">
               <div className={styles['wrapper-block']}>
                 <i className={`material-icons ${styles['icon-block']}`}>chat</i>
-                <div className={styles['title-block']}>Xateja amb la teva comunitat</div>
+                <h5 className={styles['title-block']}>Xateja amb la teva comunitat</h5>
                 <p className={styles['description-block']}>
                   Parla amb la gent de la teva comunitat amb el xat intern, sense necessitat de
                   compartir dades personals.
@@ -83,7 +83,6 @@ const Landing = () => {
             <div className="input-field col s12">
               <i className="material-icons prefix">group</i>
               <input type="text" id="pin-input" onChange={onChange} />
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="pin-input">PIN</label>
             </div>
           </div>

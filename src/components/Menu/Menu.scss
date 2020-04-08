@@ -1,0 +1,23 @@
+.menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 5px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
