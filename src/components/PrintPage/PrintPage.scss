@@ -1,0 +1,90 @@
+.print-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.printing-zone {
+  display: none;
+}
+
+.non-printing-zone {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media print {
+  @page { margin: 0; }
+
+  .non-printing-zone {
+    display: none;
+  }
+
+  .printing-zone {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    margin: 1.6cm;
+  }
+
+  .qr-container {
+    align-items: center;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .qr-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .qr {
+    width: 300px;
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    width: 80px;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 20px;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+  }
+
+  .description {
+    padding: 15px;
+  }
+
+  .text {
+    margin: 10px auto;
+  }
+
+  .link {
+    font-size: 1rem;
+  }
+
+  .pin {
+    font-size: 4rem;
+    margin: 0;
+  }
+}
+

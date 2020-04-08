@@ -1,11 +1,13 @@
 import React from 'react';
-import styles from './RequestsList.scss';
+import { Link } from 'react-router-dom';
+import styles from './Community.scss';
 
-const RequestsList = ({ routeProps }) => {
+const Community = ({ routeProps }) => {
   const { communityId } = routeProps.match.params;
 
   return (
     <>
+      <Link to={`/community/${communityId}/print`}>Imprimir</Link>
       <h1 className="vertical-container">{`List of requests of community ${communityId}`}</h1>
       <div className={styles['categories-text']}>Categories</div>
       <div>
@@ -36,4 +38,4 @@ const RequestsList = ({ routeProps }) => {
   );
 };
 
-export default RequestsList;
+export default Community;
