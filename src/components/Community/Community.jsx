@@ -63,7 +63,7 @@ const Community = () => {
               <div className={styles['request-products']}>
                 <ul>
                   {(request.productsList).map((product) => (
-                    <li>{product}</li>
+                    <li key={`${request.id}-${product}`}>{product}</li>
                   ))}
                 </ul>
               </div>

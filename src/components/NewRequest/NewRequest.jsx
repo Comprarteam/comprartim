@@ -3,12 +3,11 @@ import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import ChooseCategory from './Steps/ChooseCategory';
 import ChooseProducts from './Steps/ChooseProducts';
-import { registerNewRequest } from '../../services/requests';
+import { registerNewRequest } from '../../services/Requests';
 
 const NewRequest = () => {
   const [categorySelected, setCategorySelected] = useState('');
   const history = useHistory();
-  const categoriesList = ['farmacia', 'peix', 'poma', 'supermercat', 'croissant', 'pollastre'];
   let communityId = '1';
 
   if (window.localStorage) {
@@ -39,7 +38,6 @@ const NewRequest = () => {
         {categorySelected === ''
           ? (
             <ChooseCategory
-              categoriesList={categoriesList}
               onClickCategory={handleClickCategory}
             />
           ) : (
