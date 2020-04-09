@@ -16,7 +16,7 @@ const ChooseCategory = ({ categoriesList, onClickCategory }) => (
         onClick={() => onClickCategory(category)}
         onKeyPress={() => onClickCategory(category)}
       >
-        <div className={`food-icon-${category}`} />
+        <div className={`${styles['categories-icon']} food-icon-${category}`} />
         <div>{category}</div>
       </div>
     ))}

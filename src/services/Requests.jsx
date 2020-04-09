@@ -22,3 +22,11 @@ export const getRequestsFromCommunity = async (communityId) => {
   const responseJSON = await response.json();
   return parseRequests(responseJSON);
 };
+
+export const actionRequest = async (requestId, actionId, action) => (
+  fetch(`${URL}/${requestPath}/${requestId}/${action}`, {
+    method: 'put',
+    body: JSON.stringify(actionId),
+    headers: { 'Content-Type': 'application/json' },
+  })
+);
