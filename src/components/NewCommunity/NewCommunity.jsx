@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
-import registerNewCommunity from '../../services/community';
+import registerNewCommunity from '../../services/NewCommunity';
 import styles from './NewCommunity.scss';
 
 const NewCommunity = () => {

@@ -9,7 +9,11 @@ const NewRequest = () => {
   const [categorySelected, setCategorySelected] = useState('');
   const history = useHistory();
   const categoriesList = ['farmacia', 'peix', 'poma', 'supermercat', 'croissant', 'pollastre'];
-  const communityId = 1;
+  let communityId = '1';
+
+  if (window.localStorage) {
+    communityId = window.localStorage.getItem('communityId');
+  }
 
   const handleClickCategory = (categoryClicked) => {
     setCategorySelected(categoryClicked);

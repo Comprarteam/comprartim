@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Header from '../Header/Header';
-import { getRequestsFromCommunity } from '../../services/requests';
+import { getRequestsFromCommunity } from '../../services/Requests';
 
 const Community = () => {
   const { communityId } = useParams();
   const [requests, setRequests] = useState([]);
+
+  if (window.localStorage) {
+    window.localStorage.setItem('communityId', communityId);
+  }
 
   const getRequests = async () => {
     const response = await getRequestsFromCommunity(communityId);
