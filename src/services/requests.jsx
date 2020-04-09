@@ -1,8 +1,10 @@
 import fetch from 'node-fetch';
+import Request from '../domain/Request';
 
-const URL = 'https://cors-anywhere.herokuapp.com/europe-west1-comprartim.cloudfunctions.net';
+const URL = 'https://europe-west1-comprartim.cloudfunctions.net';
 const requestPath = 'shopping_requests';
 
+const parseRequests = (data) => new Request(data);
 
 export const registerNewRequest = async (params) => {
   const response = await fetch(`${URL}/${requestPath}`, {
@@ -15,10 +17,10 @@ export const registerNewRequest = async (params) => {
 };
 
 export const getRequestsFromCommunity = async (communityId) => {
-  const response = await fetch(`${URL}/${communityId}/${requestPath}`, {
+  const response = await fetch(`${URL}/communities/${communityId}/${requestPath}`, {
     method: 'get',
     headers: { 'Content-Type': 'application/json' },
   });
-  console.log(response);
-  return response;
+  const responseJSON = await response.json();
+  return parseRequests(responseJSON);
 };
