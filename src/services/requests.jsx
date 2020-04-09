@@ -1,9 +1,11 @@
 import fetch from 'node-fetch';
 
-const url = 'https://europe-west1-comprartim.cloudfunctions.net/shopping_requests';
+const URL = 'https://cors-anywhere.herokuapp.com/europe-west1-comprartim.cloudfunctions.net';
+const requestPath = 'shopping_requests';
 
-const registerNewRequest = async (params) => {
-  const response = await fetch(url, {
+
+export const registerNewRequest = async (params) => {
+  const response = await fetch(`${URL}/${requestPath}`, {
     method: 'post',
     body: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json' },
@@ -12,4 +14,11 @@ const registerNewRequest = async (params) => {
   return response;
 };
 
-export default registerNewRequest;
+export const getRequestsFromCommunity = async (communityId) => {
+  const response = await fetch(`${URL}/${communityId}/${requestPath}`, {
+    method: 'get',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  console.log(response);
+  return response;
+};
