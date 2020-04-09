@@ -5,9 +5,9 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
 
   return (
     <>
-      <p>{`El segon pas és afegir els productes que necessites del/de la ${categorySelected}`}</p>
+      <p>{`El segon pas és afegir els productes que necessites del/de la ${categorySelected.name}`}</p>
 
-      <div>{`Els productes de la teva sol·licitud per a ${categorySelected} són:`}</div>
+      <div>{`Els productes de la teva sol·licitud per a ${categorySelected.name} són:`}</div>
       <div>
         <ul>
           {products.map((product) => (

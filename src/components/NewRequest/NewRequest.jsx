@@ -22,7 +22,7 @@ const NewRequest = () => {
     const params = {
       communityId,
       ownerId: 'userTest',
-      categoryId: categorySelected,
+      categoryId: categorySelected.id,
       productsList,
     };
     const response = await registerNewRequest(params);
