@@ -46,8 +46,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
+    "firebase": "^7.13.2",
     "node-fetch": "^2.6.0",
     "react": "^16.10.2",
+    "react-chat-widget": "2.1.5",
     "react-dom": "^16.10.2",
     "react-qr-svg": "^2.2.1",
     "react-router-dom": "^5.1.2"
