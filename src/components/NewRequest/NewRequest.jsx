@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import ChooseCategory from './Steps/ChooseCategory';
 import ChooseProducts from './Steps/ChooseProducts';
-import { getRequestsFromCommunity } from '../../services/requests';
+import { registerNewRequest } from '../../services/requests';
 
 const NewRequest = () => {
   const [categorySelected, setCategorySelected] = useState('');
@@ -15,14 +15,14 @@ const NewRequest = () => {
     setCategorySelected(categoryClicked);
   };
 
-  const handleClickConfirmRequest = async () => {
-    /* const params = {
+  const handleClickConfirmRequest = async (productsList) => {
+    const params = {
       communityId,
-      userId: 'userTest',
+      ownerId: 'userTest',
       categoryId: categorySelected,
       productsList,
-    }; */
-    const response = await getRequestsFromCommunity(communityId);
+    };
+    const response = await registerNewRequest(params);
     if (response.ok) {
       history.push(`/community/${communityId}`);
     }

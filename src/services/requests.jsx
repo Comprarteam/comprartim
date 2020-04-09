@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
-import Request from '../domain/Request';
+import Requests from '../domain/Requests';
 
 const URL = 'https://europe-west1-comprartim.cloudfunctions.net';
 const requestPath = 'shopping_requests';
 
-const parseRequests = (data) => new Request(data);
+const parseRequests = (data) => new Requests(data);
 
 export const registerNewRequest = async (params) => {
   const response = await fetch(`${URL}/${requestPath}`, {
