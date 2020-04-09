@@ -4,20 +4,20 @@ import styles from './ChooseCategory.scss';
 
 const ChooseCategory = ({ onClickCategory }) => (
   <>
-    <p>
+    <div className={styles['categories-description']}>
       El primer pas per crear una sol·licitud és
       seleccionar de quina botiga tens una necessitat
-    </p>
+    </div>
     {CategoriesList.map((category) => (
       <div
         key={category.id}
         role="button"
         tabIndex={0}
-        className={styles['category-item']}
+        className={`${styles['category-item']} indigo accent-1`}
         onClick={() => onClickCategory(category)}
         onKeyPress={() => onClickCategory(category)}
       >
-        <div className={`${styles['categories-icon']} food-icon-${category.id}`} />
+        <div className={`${styles['item-icon']} food-icon-${category.id}`} />
         <div>{category.name}</div>
       </div>
     ))}

@@ -1,7 +1,21 @@
-.categories-text {
-  color: red;
+.categories-description {
+  margin-top: 10px;
+  margin-bottom: 25px;
 }
 
-.categories-icon {
+.category-item {
+  align-items: center;
+  background: white;
+  border-radius: 1px;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: calc((100% - 40px) / 3);
+}
+
+.item-icon {
   font-size: 4rem;
 }

@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import ChooseCategory from './Steps/ChooseCategory';
 import ChooseProducts from './Steps/ChooseProducts';
 import { registerNewRequest } from '../../services/Requests';
+import styles from './NewRequest.scss';
 
 const NewRequest = () => {
   const [categorySelected, setCategorySelected] = useState('');
@@ -34,7 +35,7 @@ const NewRequest = () => {
   return (
     <>
       <Header title="Nova sol·licitud" />
-      <div className="container">
+      <div className={styles['requests-container']}>
         {categorySelected === ''
           ? (
             <ChooseCategory
