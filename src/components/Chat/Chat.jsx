@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Widget, addResponseMessage } from 'react-chat-widget';
-import { initializeFirebase, createChatRoom } from 'firebase-chat-ready-api';
+import { Widget, addResponseMessage, addUserMessage } from 'react-chat-widget';
+import { initializeFirebase, getChatRoom } from 'firebase-chat-ready-api';
 
 initializeFirebase(
   {
@@ -14,36 +14,46 @@ initializeFirebase(
   },
 );
 
-const currentUser = { userId: '1' };
-const userB = { userId: '2' };
-const members = [currentUser, userB];
+const currentUser = { userId: 'efe13fseaef' };
+const chatId = 'MvxZXqpW821W32JZcc2b';
+let chatRoom;
+const currentDate = Date.now();
 
-let newchatRoom;
 class Chat extends Component {
   static handleNewUserMessage(newMessage) {
     console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
-    newchatRoom.sendMessage(newMessage, currentUser, (err) => {
+    chatRoom.sendMessage(newMessage, currentUser, (err) => {
       if (!err) console.log('message sent');
     });
   }
 
   async componentDidMount() {
-    newchatRoom = await createChatRoom('Chat', members)
+    chatRoom = await getChatRoom(chatId)
       .then((result) => {
         console.log(result);
         return result;
       }).catch((err) => {
         console.log(err);
       });
+
     console.log(this.newchatRoom);
-    newchatRoom.getMessagesAndListen((message) => {
-      console.log(message);
-      if (message.from !== currentUser.userId) {
+
+    chatRoom.getAllMessages((message) => {
+      if (message.from === currentUser.userId) {
+        addUserMessage(message.body);
+      } else {
+        addResponseMessage(message.body);
+      }
+    }, () => {
+      console.log('Recovered Messages');
+    });
+
+    chatRoom.getMessagesAndListen((message) => {
+      if (message.createdAt > currentDate && message.from !== currentUser.userId) {
         addResponseMessage(message.body);
       }
     });
-    addResponseMessage('Welcome to this awesome chat!');
   }
 
   render() {
