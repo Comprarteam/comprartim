@@ -1,26 +1,3 @@
-.requests-container {
-  margin-bottom: 10px;
-  padding-top: 50px;
-  width: 100%;
-}
-
-.request-item {
-  border: 1px solid #000;
-  display: flex;
-  margin-bottom: 5px;
-  position: relative;
-  width: 100%;
-}
-
-.request-category,
-.request-products {
-  margin-left: 10px;
-}
-
-.category-icon {
-  font-size: 3rem;
-}
-
 a.new-btn {
   border-radius: 20px;
   position: absolute;
@@ -32,4 +9,3 @@ a.new-btn {
 .container {
   position: relative;
 }
-
