@@ -3,11 +3,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { actionRequest, getRequestsFromCommunity } from '../../services/Requests';
 import styles from './RequestsList.scss';
 
-const RequestsList = ({ communityId, userId }) => {
+const RequestsList = ({ communityId, userId: loggedUserId }) => {
   const [requests, setRequests] = useState([]);
   const [requestFinished, setRequestFinished] = useState(false);
   const history = useHistory();
-  const buyerId = 'volunteerUser';
 
   const getRequests = async () => {
     const response = await getRequestsFromCommunity(communityId);
@@ -17,7 +16,7 @@ const RequestsList = ({ communityId, userId }) => {
 
   const handleClickRequest = async (request) => {
     let action = 'accept';
-    let actionId = { buyerId };
+    let actionId = { buyerId: loggedUserId };
 
     if (request.status === 'accepted') {
       action = 'close';
@@ -32,7 +31,7 @@ const RequestsList = ({ communityId, userId }) => {
   };
 
   const handleClickChat = (chatId) => {
-    history.push(`/chat/${userId}/${chatId}`);
+    history.push(`/chat/${loggedUserId}/${chatId}`);
   };
 
   useEffect(() => {
