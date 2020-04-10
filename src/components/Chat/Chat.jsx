@@ -51,8 +51,10 @@ class Chat extends Component {
       });
     console.log(this.newchatRoom);
     newchatRoom.getMessagesAndListen((message) => {
-      console.log(message.body);
-      addResponseMessage(message.body);
+      console.log(message);
+      if (message.from !== userA.userId) {
+        addResponseMessage(message.body);
+      }
     });
     addResponseMessage('Welcome to this awesome chat!');
   }
