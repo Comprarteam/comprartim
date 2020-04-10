@@ -14,21 +14,22 @@ initializeFirebase(
   },
 );
 
-const currentUser = { userId: 'volunteerUser' };
-const chatId = 'TFQ8G5MPl2jhdB603uGc';
+
 let chatRoom;
 const currentDate = Date.now();
 
 class Chat extends Component {
-  static handleNewUserMessage(newMessage) {
-    console.log(`New incoming message ${newMessage}`);
-    chatRoom.sendMessage(newMessage, currentUser, (err) => {
-      if (!err) console.log('message sent');
-    });
+  constructor(props) {
+    super(props);
+    const { params } = props.match;
+    this.currentUser = { userId: params.userId };
+    this.chatId = params.chatId;
+
+    this.handleNewUserMessage = this.handleNewUserMessage.bind(this);
   }
 
   async componentDidMount() {
-    chatRoom = await getChatRoom(chatId)
+    chatRoom = await getChatRoom(this.chatId)
       .then((result) => {
         console.log(result);
         return result;
@@ -39,7 +40,7 @@ class Chat extends Component {
     console.log(this.newchatRoom);
 
     chatRoom.getAllMessages((message) => {
-      if (message.from === currentUser.userId) {
+      if (message.from === this.currentUser.userId) {
         addUserMessage(message.body);
       } else {
         addResponseMessage(message.body);
@@ -49,9 +50,17 @@ class Chat extends Component {
     });
 
     chatRoom.getMessagesAndListen((message) => {
-      if (message.createdAt > currentDate && message.from !== currentUser.userId) {
+      if (message.createdAt > currentDate && message.from !== this.currentUser.userId) {
         addResponseMessage(message.body);
       }
+    });
+  }
+
+  handleNewUserMessage(newMessage) {
+    console.log(`New incoming message ${newMessage}`);
+    console.log(this.currentUser);
+    chatRoom.sendMessage(newMessage, this.currentUser, (err) => {
+      if (!err) console.log('message sent');
     });
   }
 
@@ -59,7 +68,7 @@ class Chat extends Component {
     return (
       <div className="App">
         <Widget
-          handleNewUserMessage={Chat.handleNewUserMessage}
+          handleNewUserMessage={this.handleNewUserMessage}
           title="Xat de sol·licitud de compra"
           subtitle="Pepe"
         />
