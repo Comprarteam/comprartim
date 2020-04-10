@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ChooseProducts.scss';
 
 const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
-  let instances;
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
+  let instances = [];
   const productsList = [];
 
   const handleClickConfirm = () => {
     const { chipsData } = instances[0];
 
     if (chipsData.length > 0) {
+      setAlreadySubmitted(true);
       chipsData.map((product) => (
         productsList.push(product.tag)
       ));
@@ -31,14 +33,18 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
       <div className={`${styles['products-chips']} chips chips-placeholder`}>
         <input className={styles['chips-input']} />
       </div>
-      <div
-        role="button"
-        tabIndex={0}
-        className={`${styles['chips-submit']} btn-small indigo lighten-1 white-text`}
-        onClick={() => handleClickConfirm()}
-        onKeyPress={() => handleClickConfirm()}
-      >
-        Confirmar productes
+      <div className="center">
+        <button
+          type="button"
+          disabled={alreadySubmitted}
+          tabIndex={0}
+          className={`${styles['chips-submit']} btn-small indigo lighten-1 white-text`}
+          onClick={() => handleClickConfirm()}
+          onKeyPress={() => handleClickConfirm()}
+        >
+          <i className="material-icons left">check</i>
+          Confirmar productes
+        </button>
       </div>
     </div>
   );
