@@ -38,13 +38,13 @@ const RequestsList = ({ communityId }) => {
     let statusText;
     switch (status) {
       case 'pending':
-        statusText = 'Ajudar';
+        statusText = 'Comprar';
         break;
       case 'accepted':
-        statusText = 'En Marxa';
+        statusText = 'Entregar';
         break;
       default:
-        statusText = 'Acabada';
+        statusText = 'Finalitzat';
     }
     return statusText;
   };
