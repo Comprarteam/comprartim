@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Widget, addResponseMessage, addUserMessage } from 'react-chat-widget';
+import {
+  Widget, addResponseMessage, addUserMessage, dropMessages,
+} from 'react-chat-widget';
 import { initializeFirebase, getChatRoom } from 'firebase-chat-ready-api';
 
 initializeFirebase(
@@ -29,6 +31,7 @@ class Chat extends Component {
   }
 
   async componentDidMount() {
+    dropMessages();
     chatRoom = await getChatRoom(this.chatId)
       .then((result) => {
         console.log(result);
