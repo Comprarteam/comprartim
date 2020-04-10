@@ -93,14 +93,29 @@ const RequestsList = ({ communityId }) => {
                 ))}
               </ul>
             </div>
-            <div
-              role="button"
-              tabIndex={0}
-              className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3 ${request.status === 'pending' ? '' : ' disable'}`}
-              onClick={() => handleClickRequest(request)}
-              onKeyPress={() => handleClickRequest(request)}
-            >
-              {renderTextButton(status)}
+            <div className={styles.action}>
+              <button
+                type="button"
+                tabIndex={0}
+                className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
+                onClick={() => handleClickRequest(request)}
+                onKeyPress={() => handleClickRequest(request)}
+              >
+                {renderTextButton(status)}
+              </button>
+              {status === 'accepted'
+                && (
+                  <button
+                    type="button"
+                    tabIndex={0}
+                    className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
+                    onClick={() => console.log('xat')}
+                    onKeyPress={() => handleClickRequest(request)}
+                  >
+                    <i className="material-icons left">chat</i>
+                    Xat
+                  </button>
+                )}
             </div>
           </div>
         );

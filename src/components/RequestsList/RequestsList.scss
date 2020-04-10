@@ -50,3 +50,15 @@
   padding: 15px;
   width: 90px;
 }
+
+.action {
+  display: flex;
+
+  button:first-child {
+    flex: auto;
+  }
+
+  button + button {
+    margin-left: 10px;
+  }
+}
