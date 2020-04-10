@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { actionRequest, getRequestsFromCommunity } from '../../services/Requests';
 import styles from './RequestsList.scss';
 
-const RequestsList = ({ communityId }) => {
+const RequestsList = ({ communityId, userId }) => {
   const [requests, setRequests] = useState([]);
   const [requestFinished, setRequestFinished] = useState(false);
   const buyerId = 'volunteerUser';
@@ -28,6 +28,10 @@ const RequestsList = ({ communityId }) => {
     } else {
       setRequestFinished(true);
     }
+  };
+
+  const handleClickChat = (chatId) => {
+    useHistory().push(`/chat/${userId}/${chatId}`);
   };
 
   useEffect(() => {
@@ -75,7 +79,7 @@ const RequestsList = ({ communityId }) => {
 
       {requests.map((request) => {
         const {
-          createdAt, id, ownerId, status, productsList,
+          categoryId, chatId, createdAt, id, ownerId, status, productsList,
         } = request;
         // eslint-disable-next-line no-underscore-dangle
         const creationDate = toDateTime(createdAt && createdAt._seconds);
@@ -86,7 +90,7 @@ const RequestsList = ({ communityId }) => {
               <div>{creationDate}</div>
             </div>
             <div className={styles.products}>
-              <div className={`${styles.icon} food-icon-${request.categoryId}`} />
+              <div className={`${styles.icon} food-icon-${categoryId}`} />
               <ul>
                 {(productsList).map((product) => (
                   <li key={`${request.id}-${product}`}>{product}</li>
@@ -109,8 +113,8 @@ const RequestsList = ({ communityId }) => {
                     type="button"
                     tabIndex={0}
                     className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
-                    onClick={() => console.log('xat')}
-                    onKeyPress={() => handleClickRequest(request)}
+                    onClick={() => handleClickChat(chatId)}
+                    onKeyPress={() => handleClickChat(chatId)}
                   >
                     <i className="material-icons left">chat</i>
                     Xat
