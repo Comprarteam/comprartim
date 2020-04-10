@@ -14,8 +14,8 @@ initializeFirebase(
   },
 );
 
-const currentUser = { userId: 'efe13fseaef' };
-const chatId = 'jtirLimGp2mKMT3bwRHU';
+const currentUser = { userId: 'volunteerUser' };
+const chatId = 'TFQ8G5MPl2jhdB603uGc';
 let chatRoom;
 const currentDate = Date.now();
 

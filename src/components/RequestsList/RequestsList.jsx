@@ -6,6 +6,7 @@ import styles from './RequestsList.scss';
 const RequestsList = ({ communityId, userId }) => {
   const [requests, setRequests] = useState([]);
   const [requestFinished, setRequestFinished] = useState(false);
+  const history = useHistory();
   const buyerId = 'volunteerUser';
 
   const getRequests = async () => {
@@ -31,7 +32,7 @@ const RequestsList = ({ communityId, userId }) => {
   };
 
   const handleClickChat = (chatId) => {
-    useHistory().push(`/chat/${userId}/${chatId}`);
+    history.push(`/chat/${userId}/${chatId}`);
   };
 
   useEffect(() => {
