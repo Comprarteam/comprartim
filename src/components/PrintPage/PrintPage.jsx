@@ -22,7 +22,7 @@ const PrintPage = () => {
             <button
               type="button"
               onClick={onClickRefresh}
-              className="btn-large waves-effect waves-light indigo"
+              className="btn-large waves-effect waves-light indigo lighten-1"
             >
               Tornar a Imprimir
             </button>

@@ -44,7 +44,7 @@ const NewCommunity = () => {
           <div
             role="button"
             tabIndex={0}
-            className="btn-small waves-effect waves-light indigo"
+            className="btn-small waves-effect waves-light indigo lighten-1"
             onClick={() => handleClickRegister()}
             onKeyPress={() => handleClickRegister()}
           >

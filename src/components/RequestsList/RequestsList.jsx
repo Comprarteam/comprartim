@@ -5,12 +5,13 @@ import styles from './RequestsList.scss';
 
 const RequestsList = ({ communityId }) => {
   const [requests, setRequests] = useState([]);
+  const [requestFinished, setRequestFinished] = useState(false);
   const buyerId = 'volunteerUser';
 
   const getRequests = async () => {
     const response = await getRequestsFromCommunity(communityId);
-    const { data } = response;
-    setRequests(data);
+    setRequests(response.data);
+    setRequestFinished(true);
   };
 
   const handleClickRequest = async (request) => {
@@ -24,6 +25,8 @@ const RequestsList = ({ communityId }) => {
     const response = await actionRequest(request.id, actionId, action);
     if (response.ok) {
       getRequests();
+    } else {
+      setRequestFinished(true);
     }
   };
 
@@ -60,7 +63,7 @@ const RequestsList = ({ communityId }) => {
           <div
             role="button"
             tabIndex={0}
-            className={`btn-small waves-effect waves-light indigo${request.status === 'pending' ? '' : ' disable'}`}
+            className={`btn-small waves-effect waves-light indigo lighten-1 ${request.status === 'pending' ? '' : ' disable'}`}
             onClick={() => handleClickRequest(request)}
             onKeyPress={() => handleClickRequest(request)}
           >
@@ -68,7 +71,7 @@ const RequestsList = ({ communityId }) => {
           </div>
         </div>
       ))}
-      {requests.length === 0 && (
+      {requests.length === 0 && requestFinished && (
         <div className="center">
           <p className={styles.text}>Crea una sol·licitud per començar.</p>
 

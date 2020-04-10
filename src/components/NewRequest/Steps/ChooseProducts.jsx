@@ -26,21 +26,21 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
   }, []);
 
   return (
-    <>
-      <p>{`El segon pas és afegir els productes que necessites del/de la ${categorySelected.name}`}</p>
+    <div className={styles.products}>
+      <p>{`Qùe necessites de la ${categorySelected.name}?`}</p>
       <div className={`${styles['products-chips']} chips chips-placeholder`}>
         <input className={styles['chips-input']} />
       </div>
       <div
         role="button"
         tabIndex={0}
-        className={`${styles['chips-submit']} btn-small blue darken-1 white-text`}
+        className={`${styles['chips-submit']} btn-small indigo lighten-1 white-text`}
         onClick={() => handleClickConfirm()}
         onKeyPress={() => handleClickConfirm()}
       >
         Confirmar productes
       </div>
-    </>
+    </div>
   );
 };
 
