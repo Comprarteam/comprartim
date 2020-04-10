@@ -86,7 +86,7 @@ const Landing = () => {
               <label htmlFor="pin-input">PIN</label>
             </div>
           </div>
-          <Link className="btn-large waves-effect waves-light indigo" to={`/community/${pin}`}>
+          <Link className="btn-large waves-effect waves-light indigo lighten-1" to={`/community/${pin}`}>
             Unir-se
           </Link>
         </div>

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { registerNewRequest } from '../../services/Requests';
 import Header from '../Header/Header';
+import Breadcrumbs from './Steps/Breadcrumbs';
+import styles from './Steps/Breadcrumbs.scss';
 import ChooseCategory from './Steps/ChooseCategory';
 import ChooseProducts from './Steps/ChooseProducts';
-import { registerNewRequest } from '../../services/Requests';
-import styles from './NewRequest.scss';
 
 const NewRequest = () => {
-  const [categorySelected, setCategorySelected] = useState('');
+  const EMPTY_CATEGORY = {};
+  const [categorySelected, setCategorySelected] = useState(EMPTY_CATEGORY);
   const history = useHistory();
-  let communityId = '1';
 
+  let communityId = '1';
   if (window.localStorage) {
     communityId = window.localStorage.getItem('communityId');
   }
@@ -32,21 +34,30 @@ const NewRequest = () => {
     }
   };
 
+  const goToCategoryList = () => handleClickCategory(EMPTY_CATEGORY);
+  const isFirstStep = Object.keys(categorySelected).length === 0;
   return (
     <>
       <Header title="Nova sol·licitud" />
-      <div className={styles['requests-container']}>
-        {categorySelected === ''
-          ? (
-            <ChooseCategory
-              onClickCategory={handleClickCategory}
-            />
-          ) : (
-            <ChooseProducts
-              categorySelected={categorySelected}
-              onClickConfirmRequest={handleClickConfirmRequest}
-            />
-          )}
+      <Breadcrumbs
+        goToCategoryList={goToCategoryList}
+        isFirstStep={isFirstStep}
+        categorySelected={categorySelected}
+      />
+      <div className="container">
+        <div className={styles['requests-container']}>
+          {isFirstStep
+            ? (
+              <ChooseCategory
+                onClickCategory={handleClickCategory}
+              />
+            ) : (
+              <ChooseProducts
+                categorySelected={categorySelected}
+                onClickConfirmRequest={handleClickConfirmRequest}
+              />
+            )}
+        </div>
       </div>
     </>
   );

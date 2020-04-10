@@ -1,23 +1,11 @@
-.requests-container {
-  margin-bottom: 10px;
-  width: 100%;
+a.new-btn {
+  border-radius: 20px;
+  position: absolute;
+  right: 0;
+  text-transform: none;
+  top: -15px;
 }
 
-.request-item {
-  border: 1px solid #000;
-  display: flex;
-  margin-bottom: 5px;
+.container {
   position: relative;
-  width: 100%;
 }
-
-.request-category,
-.request-products {
-  margin-left: 10px;
-}
-
-.category-icon {
-  font-size: 3rem;
-}
-
-
