@@ -15,14 +15,13 @@ initializeFirebase(
 );
 
 const currentUser = { userId: 'efe13fseaef' };
-const chatId = 'MvxZXqpW821W32JZcc2b';
+const chatId = 'jtirLimGp2mKMT3bwRHU';
 let chatRoom;
 const currentDate = Date.now();
 
 class Chat extends Component {
   static handleNewUserMessage(newMessage) {
-    console.log(`New message incoming! ${newMessage}`);
-    // Now send the message throught the backend API
+    console.log(`New incoming message ${newMessage}`);
     chatRoom.sendMessage(newMessage, currentUser, (err) => {
       if (!err) console.log('message sent');
     });
