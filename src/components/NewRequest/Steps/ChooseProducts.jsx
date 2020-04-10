@@ -20,7 +20,7 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
     const elems = document.querySelectorAll('.chips');
     const options = {
       placeholder: 'Afegeix els productes',
-      secondaryPlaceholder: '+Productes',
+      secondaryPlaceholder: '+ Productes',
     };
     instances = M.Chips.init(elems, options);
   }, []);
@@ -28,11 +28,13 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
   return (
     <>
       <p>{`El segon pas és afegir els productes que necessites del/de la ${categorySelected.name}`}</p>
-      <div className={`${styles['products-chips']} chips chips-placeholder`} />
+      <div className={`${styles['products-chips']} chips chips-placeholder`}>
+        <input className={styles['chips-input']} />
+      </div>
       <div
         role="button"
         tabIndex={0}
-        className="btn-large waves-effect waves-light indigo lighten-1"
+        className={`${styles['chips-submit']} btn-small blue darken-1 white-text`}
         onClick={() => handleClickConfirm()}
         onKeyPress={() => handleClickConfirm()}
       >
