@@ -75,7 +75,7 @@ const RequestsList = ({ communityId }) => {
 
       {requests.map((request) => {
         const {
-          createdAt, id, ownerId, status,
+          createdAt, id, ownerId, status, productsList,
         } = request;
         // eslint-disable-next-line no-underscore-dangle
         const creationDate = toDateTime(createdAt && createdAt._seconds);
@@ -88,7 +88,7 @@ const RequestsList = ({ communityId }) => {
             <div className={styles.products}>
               <div className={`${styles.icon} food-icon-${request.categoryId}`} />
               <ul>
-                {(request.productsList).map((product) => (
+                {(productsList).map((product) => (
                   <li key={`${request.id}-${product}`}>{product}</li>
                 ))}
               </ul>
