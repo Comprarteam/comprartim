@@ -71,8 +71,6 @@ module.exports = () => {
     resolve: {
       alias: {
         react: path.join(__dirname, 'node_modules', 'react'),
-        ReactDOM: path.join(__dirname, 'node_modules', 'react-dom'),
-        React: path.join(__dirname, 'node_modules', 'react'),
       },
       extensions: ['.js', '.jsx', '.json'],
     },
