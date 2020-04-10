@@ -49,10 +49,11 @@ const Community = () => {
 
   return (
     <>
-      <Header title="La meva comunitat" />
-      <div className="container">
-        <h1 className="vertical-container">{`List of requests of community ${communityId}`}</h1>
-        <Link className="" to="/new-request">Nova sol·licitud</Link>
+      <Header title={`La meva comunitat (${communityId})`} />
+      <div className={`container ${styles.container}`}>
+        <Link className={`btn-small btn-large red ${styles['new-btn']}`} to="/new-request">
+          Nova sol·licitud
+        </Link>
         <div className={styles['requests-container']}>
           {requests.map((request) => (
             <div key={request.id} className={styles['request-item']}>

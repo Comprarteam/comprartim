@@ -1,5 +1,6 @@
 .requests-container {
   margin-bottom: 10px;
+  padding-top: 50px;
   width: 100%;
 }
 
@@ -20,4 +21,15 @@
   font-size: 3rem;
 }
 
+a.new-btn {
+  border-radius: 20px;
+  position: absolute;
+  right: 0;
+  text-transform: none;
+  top: -15px;
+}
+
+.container {
+  position: relative;
+}
 
