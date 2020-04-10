@@ -35,42 +35,77 @@ const RequestsList = ({ communityId }) => {
   }, []);
 
   const renderTextButton = (status) => {
-    if (status === 'pending') {
-      return 'Ajudar';
+    let statusText;
+    switch (status) {
+      case 'pending':
+        statusText = 'Ajudar';
+        break;
+      case 'accepted':
+        statusText = 'En Marxa';
+        break;
+      default:
+        statusText = 'Acabada';
     }
-    if (status === 'accepted') {
-      return 'En Marxa';
+    return statusText;
+  };
+
+  const toDateTime = (secs) => {
+    const time = new Date(1970, 0, 1); // Epoch
+    time.setSeconds(secs);
+    return time.toLocaleDateString();
+  };
+
+  const getColor = (status) => {
+    let color;
+    switch (status) {
+      case 'pending':
+        color = 'pink';
+        break;
+      case 'accepted':
+        color = 'amber';
+        break;
+      default:
+        color = 'green';
     }
-    return 'Acabada';
+    return color;
   };
 
   return (
     <div className={styles['requests-container']}>
-      {requests.map((request) => (
-        <div key={request.id} className={styles['request-item']}>
-          <div className={`${styles['request-category']}`}>
-            <div className={`${styles['category-icon']} food-icon-${request.categoryId}`} />
-            <div className={styles['item-owner']}>{request.ownerId}</div>
+
+      {requests.map((request) => {
+        const {
+          createdAt, id, ownerId, status,
+        } = request;
+        // eslint-disable-next-line no-underscore-dangle
+        const creationDate = toDateTime(createdAt && createdAt._seconds);
+        return (
+          <div key={id} className={`${styles.item} ${getColor(status)} lighten-5`}>
+            <div className={`${getColor(status)} lighten-2 ${styles['owner-date']}`}>
+              <div>{ownerId}</div>
+              <div>{creationDate}</div>
+            </div>
+            <div className={styles.products}>
+              <div className={`${styles.icon} food-icon-${request.categoryId}`} />
+              <ul>
+                {(request.productsList).map((product) => (
+                  <li key={`${request.id}-${product}`}>{product}</li>
+                ))}
+              </ul>
+            </div>
+            <div
+              role="button"
+              tabIndex={0}
+              className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3 ${request.status === 'pending' ? '' : ' disable'}`}
+              onClick={() => handleClickRequest(request)}
+              onKeyPress={() => handleClickRequest(request)}
+            >
+              {renderTextButton(status)}
+            </div>
           </div>
-          <div className={styles['request-products']}>
-            <ul>
-              {(request.productsList).map((product) => (
-                <li key={`${request.id}-${product}`}>{product}</li>
-              ))}
-            </ul>
-          </div>
-          <span>{request.status}</span>
-          <div
-            role="button"
-            tabIndex={0}
-            className={`btn-small waves-effect waves-light indigo lighten-1 ${request.status === 'pending' ? '' : ' disable'}`}
-            onClick={() => handleClickRequest(request)}
-            onKeyPress={() => handleClickRequest(request)}
-          >
-            {renderTextButton(request.status)}
-          </div>
-        </div>
-      ))}
+        );
+      })}
+
       {requests.length === 0 && requestFinished && (
         <div className="center">
           <p className={styles.text}>Crea una sol·licitud per començar.</p>

@@ -1,7 +1,8 @@
 .requests-container {
-  margin-bottom: 10px;
-  padding-top: 50px;
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px 10px;
+  padding-top: 30px;
 }
 
 .request-item {
@@ -26,3 +27,29 @@
   margin-bottom: 30px;
 }
 
+.item {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 5px;
+  min-width: 48%;
+}
+
+.owner-date {
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.products {
+  align-items: center;
+  display: flex;
+  flex: auto;
+}
+
+.icon {
+  text-align: center;
+  padding: 15px;
+  width: 90px;
+}
