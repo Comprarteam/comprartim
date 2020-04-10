@@ -22,7 +22,9 @@ const Menu = () => {
           <Link to={`/community/${communityId}/print`} alt="Imprimir" className="white-text">
             <i className="material-icons left">local_printshop</i>
           </Link>
-          <i className="material-icons">person</i>
+          <Link to="/login" alt="Login" className="white-text">
+            <i className="material-icons">person</i>
+          </Link>
         </div>
       </div>
     </div>
