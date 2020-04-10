@@ -1,13 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import styles from './LoginPage.scss';
 
 const LoginPage = () => {
-  const usersLists = ['Josep', 'Maria'];
+  const usersLists = ['Maria', 'Josep', 'Bruno'];
+  const history = useHistory();
+
+  let communityId = '1';
+  if (window.localStorage) {
+    communityId = window.localStorage.getItem('communityId');
+  }
+
   const handleClickLogin = (user) => {
     if (window.localStorage) {
       window.localStorage.setItem('userId', user);
     }
+    history.push(`/community/${communityId}`);
   };
 
   return (

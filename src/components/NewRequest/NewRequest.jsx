@@ -12,9 +12,12 @@ const NewRequest = () => {
   const [categorySelected, setCategorySelected] = useState(EMPTY_CATEGORY);
   const history = useHistory();
 
+  const { localStorage } = window;
   let communityId = '1';
-  if (window.localStorage) {
-    communityId = window.localStorage.getItem('communityId');
+  let userId = 'user';
+  if (localStorage) {
+    communityId = localStorage.getItem('communityId');
+    userId = localStorage.getItem('userId');
   }
 
   const handleClickCategory = (categoryClicked) => {
@@ -24,7 +27,7 @@ const NewRequest = () => {
   const handleClickConfirmRequest = async (productsList) => {
     const params = {
       communityId,
-      ownerId: 'userTest',
+      ownerId: userId,
       categoryId: categorySelected.id,
       productsList,
     };

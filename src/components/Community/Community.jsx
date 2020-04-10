@@ -8,9 +8,16 @@ import styles from './Community.scss';
 const Community = () => {
   const [nameCommunity, setNameCommunity] = useState('');
   const { communityId } = useParams();
+  const { localStorage } = window;
+  let userId = 'user';
 
-  if (window.localStorage) {
-    window.localStorage.setItem('communityId', communityId);
+  if (localStorage) {
+    localStorage.setItem('communityId', communityId);
+    if (localStorage.getItem('userId') !== null) {
+      userId = localStorage.getItem('userId');
+    } else {
+      localStorage.setItem('userId', userId);
+    }
   }
 
   const getNameOfCommunity = async () => {
@@ -30,7 +37,7 @@ const Community = () => {
           <i className="material-icons left">add_box</i>
           Nova sol·licitud
         </Link>
-        <RequestsList communityId={communityId} />
+        <RequestsList communityId={communityId} userId={userId} />
       </div>
     </>
   );
