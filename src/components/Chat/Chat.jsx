@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { Widget, addResponseMessage } from 'react-chat-widget';
-import 'react-chat-widget/lib/styles.css';
+import { initializeFirebase, createChatRoom } from 'firebase-chat-ready-api';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,30 +12,48 @@ const firebaseConfig = {
   messagingSenderId: '450917423868',
   appId: '1:450917423868:web:58ccb58da8e1035e6bd579',
 };
-  // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-firebase.firestore().settings({
-  timestampsInSnapshots: true,
+initializeFirebase({
+  firebaseConfig,
 });
 
-export const myFirebase = firebase;
-export const myFirestore = firebase.firestore();
-export const myStorage = firebase.storage();
+// firebase.firestore().settings({
+//   timestampsInSnapshots: true,
+// });
+
+// export const myFirebase = firebase;
+// export const myFirestore = firebase.firestore();
+// export const myStorage = firebase.storage();
 
 
-myFirebase
+/* myFirebase
   .auth()
-  .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  .signInWithPopup(new firebase.auth.GoogleAuthProvider()); */
+
+const userA = { userId: '1' };
+const userB = { userId: '2' };
+const members = [userA, userB];
 
 class Chat extends Component {
   static handleNewUserMessage(newMessage) {
     console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
-    addResponseMessage('response');
+    this.newchatRoom.sendMessage(newMessage, userA, (err) => {
+      if (!err) console.log('message sent');
+    });
   }
 
   componentDidMount() {
+    this.newchatRoom = createChatRoom('Chat', members).then((result) => {
+      console.log(result);
+      return result;
+    }).catch((err) => {
+      console.log(err);
+    });
+    this.newchatRoom.getMessagesAndListen((message) => {
+      console.log(message.body);
+      addResponseMessage(message.body);
+    });
     addResponseMessage('Welcome to this awesome chat!');
   }
 
