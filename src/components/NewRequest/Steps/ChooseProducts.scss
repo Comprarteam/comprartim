@@ -1,0 +1,25 @@
+:global {
+  .chip {
+    display: block !important;
+  }
+}
+
+.products-chips {
+  position: relative;
+  width: 100%;
+
+  input.chips-input {
+    font-size: 17px;
+    width: 100% !important;
+  }
+}
+
+div.chips-submit {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin-top: 25px;
+  width: 100%;
+}
+

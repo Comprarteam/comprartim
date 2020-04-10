@@ -10,7 +10,7 @@ const PrintPage = () => {
   const onClickRefresh = () => window.location.reload();
 
   useEffect(() => {
-    // window.print();
+    window.print();
   });
 
   return (
