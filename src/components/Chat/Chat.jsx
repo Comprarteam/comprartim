@@ -14,29 +14,16 @@ initializeFirebase(
   },
 );
 
-// firebase.firestore().settings({
-//   timestampsInSnapshots: true,
-// });
-
-// export const myFirebase = firebase;
-// export const myFirestore = firebase.firestore();
-// export const myStorage = firebase.storage();
-
-
-/* myFirebase
-  .auth()
-  .signInWithPopup(new firebase.auth.GoogleAuthProvider()); */
-
-const userA = { userId: '1' };
+const currentUser = { userId: '1' };
 const userB = { userId: '2' };
-const members = [userA, userB];
+const members = [currentUser, userB];
 
 let newchatRoom;
 class Chat extends Component {
   static handleNewUserMessage(newMessage) {
     console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
-    newchatRoom.sendMessage(newMessage, userA, (err) => {
+    newchatRoom.sendMessage(newMessage, currentUser, (err) => {
       if (!err) console.log('message sent');
     });
   }
@@ -52,7 +39,7 @@ class Chat extends Component {
     console.log(this.newchatRoom);
     newchatRoom.getMessagesAndListen((message) => {
       console.log(message);
-      if (message.from !== userA.userId) {
+      if (message.from !== currentUser.userId) {
         addResponseMessage(message.body);
       }
     });
