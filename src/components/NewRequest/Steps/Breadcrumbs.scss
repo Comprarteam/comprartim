@@ -1,11 +1,13 @@
 $blue-gray 			    : #34495e;
 $blue-gray-darken 	: #2c3e50;
-$blue 				      : #3498db;
-$blue-darken 		    : #2980b9;
+$blue 				      : #536dfe;
+//$blue-darken 		    : #2980b9;
+$blue-darken 		    : #536dfe;
 $green 				      : #1abc9c;
 $green-darken 		  : #16a085;
 
 .breadcrumb {
+  margin: 0;
   display: flex;
   list-style:none;
 
@@ -46,7 +48,7 @@ $green-darken 		  : #16a085;
     &:first-child{
       div{
         padding-left:15px;
-        border-radius: 4px 0 0 4px;
+        //border-radius: 4px 0 0 4px;
         &:before{
           border:none;
         }
@@ -56,7 +58,7 @@ $green-darken 		  : #16a085;
       div{
         margin-right: 0;
         padding-right:15px;
-        border-radius: 0 4px 4px 0;
+        //border-radius: 0 4px 4px 0;
         &:after{
           border:none;
         }
@@ -83,28 +85,44 @@ $green-darken 		  : #16a085;
         border-color:transparent;
         border-left-color:$blue;
       }
-      &:hover{
-        background-color: $green;
-
-        &:before{
-          border-color:$green;
-          border-left-color:transparent;
-        }
-        &:after{
-          border-left-color:$green;
-        }
+      &:focus,
+      &:active {
+        outline: none;
       }
-      &:active{
-        background-color: $green-darken;
-
-        &:before{
-          border-color:$green-darken;
-          border-left-color:transparent;
-        }
-        &:after{
-          border-left-color:$green-darken;
-        }
-      }
+      //&:hover{
+      //  background-color: $green;
+      //
+      //  &:before{
+      //    border-color:$green;
+      //    border-left-color:transparent;
+      //  }
+      //  &:after{
+      //    border-left-color:$green;
+      //  }
+      //}
+      //&:active{
+      //  background-color: $green-darken;
+      //
+      //  &:before{
+      //    border-color:$green-darken;
+      //    border-left-color:transparent;
+      //  }
+      //  &:after{
+      //    border-left-color:$green-darken;
+      //  }
+      //}
     }
   }
+}
+
+.active {
+  font-weight: bold;
+}
+
+.disabled {
+  opacity: .5;
+}
+
+.icon {
+  font-size: 1rem;
 }
