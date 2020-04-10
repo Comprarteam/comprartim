@@ -15,7 +15,10 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-    
+      - name: Use this Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies 📦
         run: node --version
       - run: npm install
