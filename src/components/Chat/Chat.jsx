@@ -58,7 +58,11 @@ class Chat extends Component {
   render() {
     return (
       <div className="App">
-        <Widget handleNewUserMessage={Chat.handleNewUserMessage} />
+        <Widget
+          handleNewUserMessage={Chat.handleNewUserMessage}
+          title="Xat de sol·licitud de compra"
+          subtitle="Pepe"
+        />
       </div>
     );
   }
