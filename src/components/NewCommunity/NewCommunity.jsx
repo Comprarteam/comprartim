@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
-import registerNewCommunity from '../../services/community';
+import { registerNewCommunity } from '../../services/Community';
 import styles from './NewCommunity.scss';
 
 const NewCommunity = () => {
@@ -44,7 +44,7 @@ const NewCommunity = () => {
           <div
             role="button"
             tabIndex={0}
-            className="btn-small waves-effect waves-light indigo"
+            className="btn-small waves-effect waves-light indigo lighten-1"
             onClick={() => handleClickRegister()}
             onKeyPress={() => handleClickRegister()}
           >

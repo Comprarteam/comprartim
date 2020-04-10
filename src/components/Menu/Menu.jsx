@@ -1,21 +1,30 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './Menu.scss';
 
 const Menu = () => {
-  const { communityId } = useParams();
-  const showPrinter = !!communityId;
+  let communityId = '1';
+
+  if (window.localStorage) {
+    communityId = window.localStorage.getItem('communityId');
+  }
   return (
     <div className={`indigo accent-4 ${styles['menu-wrapper']}`}>
       <div className={`container ${styles.container}`}>
-        <div className={styles.logo}>comp(Я)artim</div>
+        <Link
+          to={`/community/${communityId}/`}
+          alt="Imprimir"
+          className={`white-text ${styles.logo}`}
+        >
+          comp(Я)artim
+        </Link>
         <div className={styles.icons}>
-          {showPrinter && (
-            <Link to={`/community/${communityId}/print`} alt="Imprimir" className="white-text">
-              <i className="material-icons left">local_printshop</i>
-            </Link>
-          )}
-          <i className="material-icons">person</i>
+          <Link to={`/community/${communityId}/print`} alt="Imprimir" className="white-text">
+            <i className="material-icons left">local_printshop</i>
+          </Link>
+          <Link to="/login" alt="Login" className="white-text">
+            <i className="material-icons">person</i>
+          </Link>
         </div>
       </div>
     </div>

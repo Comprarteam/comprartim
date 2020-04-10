@@ -7,6 +7,7 @@
   },
   "globals": {
     "document": true,
+    "M": true,
     "window": true
   },
   "rules": {
