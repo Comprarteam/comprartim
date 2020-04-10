@@ -8,13 +8,16 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
 
   const handleClickConfirm = () => {
     const { chipsData } = instances[0];
-
-    if (chipsData.length > 0) {
+    const inputElement = document.querySelector('.chips .input');
+    if (inputElement && inputElement.value !== '') {
+      productsList.push(inputElement.value);
+    }
+    if (chipsData.length > 0 || productsList.length > 0) {
       setAlreadySubmitted(true);
-      chipsData.map((product) => (
-        productsList.push(product.tag)
-      ));
-      onClickConfirmRequest(productsList);
+      chipsData.forEach((product) => {
+        productsList.push(product.tag);
+      });
+      onClickConfirmRequest(Array.from(new Set(productsList)));
     }
   };
 
