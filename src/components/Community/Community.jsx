@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Header from '../Header/Header';
 import styles from './Community.scss';
+import { getCommunity } from '../../services/Community';
 import { actionRequest, getRequestsFromCommunity } from '../../services/Requests';
 
 const Community = () => {
+  const [nameCommunity, setNameCommunity] = useState('');
   const [requests, setRequests] = useState([]);
   const { communityId } = useParams();
   const buyerId = 'volunteerUser';
@@ -13,10 +15,14 @@ const Community = () => {
     window.localStorage.setItem('communityId', communityId);
   }
 
+  const getNameOfCommunity = async () => {
+    const response = await getCommunity(communityId);
+    setNameCommunity(response.name);
+  };
+
   const getRequests = async () => {
     const response = await getRequestsFromCommunity(communityId);
-    const { data } = response;
-    setRequests(data);
+    setRequests(response.data);
   };
 
   const handleClickRequest = async (request) => {
@@ -34,6 +40,7 @@ const Community = () => {
   };
 
   useEffect(() => {
+    getNameOfCommunity();
     getRequests();
   }, []);
 
@@ -49,9 +56,9 @@ const Community = () => {
 
   return (
     <>
-      <Header title="La meva comunitat" />
+      <Header title={`Comunitat ${nameCommunity}`} />
       <div className="container">
-        <h1 className="vertical-container">{`List of requests of community ${communityId}`}</h1>
+        <h1 className="vertical-container">List of requests of community</h1>
         <Link className="" to="/new-request">Nova sol·licitud</Link>
         <div className={styles['requests-container']}>
           {requests.map((request) => (
