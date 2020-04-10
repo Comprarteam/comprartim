@@ -35,7 +35,6 @@ const NewCommunity = () => {
                 id="community-id-input"
                 type="text"
                 value={nameCommunity}
-                placeholder="Introdueix el nom de la comunitat"
                 onChange={(e) => setNameCommunity(e.target.value)}
               />
               <label htmlFor="community-id-input">Nom de la comunitat</label>
