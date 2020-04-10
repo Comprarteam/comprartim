@@ -30,8 +30,9 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
     }
   };
 
-  const handleClickChat = (chatId) => {
-    history.push(`/chat/${loggedUserId}/${chatId}`);
+  const handleClickChat = (ownerId, buyerId, chatId) => {
+    const contact = loggedUserId === ownerId ? buyerId : ownerId;
+    history.push(`/chat/${contact}/${loggedUserId}/${chatId}`);
   };
 
   useEffect(() => {
@@ -79,7 +80,7 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
 
       {requests.map((request) => {
         const {
-          categoryId, chatId, createdAt, id, ownerId, status, productsList,
+          buyerId, categoryId, chatId, createdAt, id, ownerId, status, productsList,
         } = request;
         // eslint-disable-next-line no-underscore-dangle
         const creationDate = toDateTime(createdAt && createdAt._seconds);
@@ -113,8 +114,8 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
                     type="button"
                     tabIndex={0}
                     className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
-                    onClick={() => handleClickChat(chatId)}
-                    onKeyPress={() => handleClickChat(chatId)}
+                    onClick={() => handleClickChat(ownerId, buyerId, chatId)}
+                    onKeyPress={() => handleClickChat(ownerId, buyerId, chatId)}
                   >
                     <i className="material-icons left">chat</i>
                     Xat

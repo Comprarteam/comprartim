@@ -25,6 +25,7 @@ class Chat extends Component {
     super(props);
     const { params } = props.match;
     this.currentUser = { userId: params.userId };
+    this.contact = params.contact;
     this.chatId = params.chatId;
 
     this.handleNewUserMessage = this.handleNewUserMessage.bind(this);
@@ -39,8 +40,6 @@ class Chat extends Component {
       }).catch((err) => {
         console.log(err);
       });
-
-    console.log(this.newchatRoom);
 
     chatRoom.getAllMessages((message) => {
       if (message.from === this.currentUser.userId) {
@@ -73,7 +72,7 @@ class Chat extends Component {
         <Widget
           handleNewUserMessage={this.handleNewUserMessage}
           title="Xat de sol·licitud de compra"
-          subtitle="Pepe"
+          subtitle={`Estàs parlant amb ${this.contact}`}
         />
       </div>
     );

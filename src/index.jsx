@@ -15,7 +15,7 @@ import './index.scss';
 ReactDOM.render(
   <HashRouter basename="/">
     <Route exact path="/new-community" component={NewCommunity} />
-    <Route exact path="/chat/:userId/:chatId" component={Chat} />
+    <Route exact path="/chat/:contact/:userId/:chatId" component={Chat} />
     <Route exact path="/login" component={LoginPage} />
     <Route exact path="/new-request" component={NewRequest} />
     <Route exact path="/new-user" component={NewUser} />
