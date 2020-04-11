@@ -30,8 +30,11 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
     }
   };
 
-  const handleClickChat = (ownerId, buyerId, chatId) => {
-    const contact = loggedUserId === ownerId ? buyerId : ownerId;
+  const getContact = (ownerId, buyerId) => (
+    loggedUserId === ownerId ? buyerId : ownerId
+  );
+
+  const handleClickChat = (contact, chatId) => {
     history.push(`/chat/${contact}/${loggedUserId}/${chatId}`);
   };
 
@@ -77,7 +80,6 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
 
   return (
     <div className={styles['requests-container']}>
-
       {requests.map((request) => {
         const {
           buyerId, categoryId, chatId, createdAt, id, ownerId, status, productsList,
@@ -108,17 +110,17 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
               >
                 {renderTextButton(status)}
               </button>
-              {status === 'accepted'
+              {status === 'accepted' && (loggedUserId === ownerId || loggedUserId === buyerId)
                 && (
                   <button
                     type="button"
                     tabIndex={0}
                     className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
-                    onClick={() => handleClickChat(ownerId, buyerId, chatId)}
-                    onKeyPress={() => handleClickChat(ownerId, buyerId, chatId)}
+                    onClick={() => handleClickChat(getContact(ownerId, buyerId), chatId)}
+                    onKeyPress={() => handleClickChat(getContact(ownerId, buyerId), chatId)}
                   >
                     <i className="material-icons left">chat</i>
-                    Xat
+                    {`Xat amb ${getContact(ownerId, buyerId)}`}
                   </button>
                 )}
             </div>
