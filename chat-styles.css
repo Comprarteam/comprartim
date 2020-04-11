@@ -491,6 +491,7 @@
     .rcw-widget-container {
         margin: 0;
         max-width: none;
+        padding-top: 39px;
         width: 100%
     }
     .rcw-widget-container.rcw-opened {
