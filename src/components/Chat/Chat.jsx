@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Widget, addResponseMessage, addUserMessage, dropMessages,
+  addResponseMessage, addUserMessage, dropMessages, Widget,
 } from 'react-chat-widget';
 import { initializeFirebase, getChatRoom } from 'firebase-chat-ready-api';
 import Header from '../Header/Header';
@@ -20,20 +20,15 @@ initializeFirebase(
 let chatRoom;
 const currentDate = Date.now();
 
-class Chat extends Component {
-  constructor(props) {
-    super(props);
-    const { params } = props.match;
-    this.currentUser = { userId: params.userId };
-    this.contact = params.contact;
-    this.chatId = params.chatId;
+const Chat = ({ match }) => {
+  const { params } = match;
+  const currentUser = { userId: params.userId };
+  const { contact } = params;
+  const { chatId } = params;
 
-    this.handleNewUserMessage = this.handleNewUserMessage.bind(this);
-  }
-
-  async componentDidMount() {
+  const getData = async () => {
     dropMessages();
-    chatRoom = await getChatRoom(this.chatId)
+    chatRoom = await getChatRoom(chatId)
       .then((result) => {
         console.log(result);
         return result;
@@ -42,7 +37,7 @@ class Chat extends Component {
       });
 
     chatRoom.getAllMessages((message) => {
-      if (message.from === this.currentUser.userId) {
+      if (message.from === currentUser.userId) {
         addUserMessage(message.body);
       } else {
         addResponseMessage(message.body);
@@ -52,32 +47,34 @@ class Chat extends Component {
     });
 
     chatRoom.getMessagesAndListen((message) => {
-      if (message.createdAt > currentDate && message.from !== this.currentUser.userId) {
+      if (message.createdAt > currentDate && message.from !== currentUser.userId) {
         addResponseMessage(message.body);
       }
     });
-  }
+  };
 
-  handleNewUserMessage(newMessage) {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleNewUserMessage = (newMessage) => {
     console.log(`New incoming message ${newMessage}`);
-    console.log(this.currentUser);
-    chatRoom.sendMessage(newMessage, this.currentUser, (err) => {
+    console.log(currentUser);
+    chatRoom.sendMessage(newMessage, currentUser, (err) => {
       if (!err) console.log('message sent');
     });
-  }
+  };
 
-  render() {
-    return (
-      <div className="App">
-        <Header title="Xat" />
-        <Widget
-          handleNewUserMessage={this.handleNewUserMessage}
-          title="Xat de sol·licitud de compra"
-          subtitle={`Estàs parlant amb ${this.contact}`}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="App">
+      <Header title="Xat" />
+      <Widget
+        handleNewUserMessage={handleNewUserMessage}
+        title="Xat de sol·licitud de compra"
+        subtitle={`Estàs parlant amb ${contact}`}
+      />
+    </div>
+  );
+};
 
 export default Chat;
