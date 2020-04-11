@@ -3,6 +3,7 @@ import {
   Widget, addResponseMessage, addUserMessage, dropMessages,
 } from 'react-chat-widget';
 import { initializeFirebase, getChatRoom } from 'firebase-chat-ready-api';
+import Header from '../Header/Header';
 
 initializeFirebase(
   {
@@ -15,7 +16,6 @@ initializeFirebase(
     appId: '1:450917423868:web:58ccb58da8e1035e6bd579',
   },
 );
-
 
 let chatRoom;
 const currentDate = Date.now();
@@ -69,6 +69,7 @@ class Chat extends Component {
   render() {
     return (
       <div className="App">
+        <Header title="Xat" />
         <Widget
           handleNewUserMessage={this.handleNewUserMessage}
           title="Xat de sol·licitud de compra"
