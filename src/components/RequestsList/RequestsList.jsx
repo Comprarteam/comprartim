@@ -49,7 +49,7 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
         statusText = 'Comprar';
         break;
       case 'accepted':
-        statusText = 'Entregar';
+        statusText = 'Entregat';
         break;
       default:
         statusText = 'Finalitzat';
