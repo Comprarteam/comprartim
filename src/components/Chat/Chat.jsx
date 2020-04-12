@@ -39,8 +39,6 @@ const Chat = ({ match }) => {
         console.log(err);
       });
 
-    console.log(chatRoom.listenersToRemove.length);
-
     chatRoom.getAllMessages((message) => {
       if (message.from === currentUser.userId) {
         addUserMessage(message.body);
