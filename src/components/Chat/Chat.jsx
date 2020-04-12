@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 
 initializeFirebase(
   {
-    apiKey: 'AIzaSyBYCPRz6ROZ6C_RVPst2pvYMWFt1zhB45g',
+    apiKey: `${process.env.FIREBASE_API_KEY}`,
     authDomain: 'comprartim.firebaseapp.com',
     databaseURL: 'https://comprartim.firebaseio.com',
     projectId: 'comprartim',

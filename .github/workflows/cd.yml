@@ -28,7 +28,11 @@ jobs:
         run: yarn run test
 
       - name: Build pro 🔧
-        run: yarn run pro
+        run: |
+          echo "FIREBASE_API_KEY=$FIREBASE_API_KEY" > .env
+          yarn run pro
+        env:
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
