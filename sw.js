@@ -1,4 +1,4 @@
-var cacheName = 'comprartim-v1.1.0';
+var cacheName = 'comprartim-v1.2.0';
 var filesToCache = [
   './',
   './index.html',
