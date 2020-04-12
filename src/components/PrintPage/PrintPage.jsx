@@ -34,8 +34,8 @@ const PrintPage = () => {
         <div className={styles.subtitle}>Evitem desplaçaments, evitem contagis</div>
         <div className={styles.description}>
           <p className={styles.text}>
-            Tens a algú molt aprop teu disposat a ajudar-te a fer la compra i
-            evitar que surtis de casa.
+            Tens persones molt a prop teu disposades a ajudar-te a fer la compra i
+            reduir els desplaçaments que has de realitzar.
           </p>
           <p className={styles.text}>
             Aquí pots veure el llistat de productes que els teus veïns demanen i
