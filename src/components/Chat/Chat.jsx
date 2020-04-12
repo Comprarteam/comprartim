@@ -18,7 +18,8 @@ initializeFirebase(
 );
 
 let chatRoom;
-const currentDate = Date.now();
+let currentDate;
+let previousMessageId;
 
 const Chat = ({ match }) => {
   const { params } = match;
@@ -28,6 +29,8 @@ const Chat = ({ match }) => {
 
   const getData = async () => {
     dropMessages();
+    currentDate = Date.now();
+
     chatRoom = await getChatRoom(chatId)
       .then((result) => {
         console.log(result);
@@ -47,7 +50,11 @@ const Chat = ({ match }) => {
     });
 
     chatRoom.getMessagesAndListen((message) => {
-      if (message.createdAt > currentDate && message.from !== currentUser.userId) {
+      console.log(message);
+      console.log(currentUser);
+      if (message.createdAt > currentDate && message.from !== currentUser.userId
+        && message.messageRef.id !== previousMessageId) {
+        previousMessageId = message.messageRef.id;
         addResponseMessage(message.body);
       }
     });
