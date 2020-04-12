@@ -6,7 +6,7 @@ See it in: https://ixorx.github.io/comprartim
 
 ## Install the project
 
-Recommended use yarn but you can use npm.
+Recommended use yarn but you can use npm. For development you should use yarn.
 
 ```
 > yarn install
