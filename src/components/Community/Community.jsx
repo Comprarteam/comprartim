@@ -9,7 +9,7 @@ const Community = () => {
   const [nameCommunity, setNameCommunity] = useState('');
   const { communityId } = useParams();
   const { localStorage } = window;
-  let userId = 'user';
+  let userId = 'Josep';
 
   if (localStorage) {
     localStorage.setItem('communityId', communityId);
