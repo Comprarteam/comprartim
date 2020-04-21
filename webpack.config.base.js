@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-// const dotenv = require('dotenv');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const getGitVersion = require('./bin/get-git-version').getGitVersion
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const pkg = require('./package.json');
+const { getGitVersion } = require('./bin/get-git-version');
 
 module.exports = () => {
   // Entry path
@@ -42,14 +42,14 @@ module.exports = () => {
                 importLoaders: 1,
               },
             },
-            // {
-            //   loader: 'postcss-loader',
-            //   options: {
-            //     config: {
-            //       path: './webpack.postcss.config.js',
-            //     },
-            //   },
-            // },
+            {
+              loader: 'postcss-loader',
+              options: {
+                config: {
+                  path: './config/postcss.config.js',
+                },
+              },
+            },
             {
               loader: 'sass-loader',
               options: {
@@ -61,23 +61,23 @@ module.exports = () => {
           ],
         },
         {
-            test: /\.(woff|woff2|ttf|otf|eot|svg)$/,
-            use: [
-                {
-                    loader: "file-loader",
-                    options: {
-                        outputPath: "fonts"
-                    }
-                }
-            ]
+          test: /\.(woff|woff2|ttf|otf|eot|svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'fonts',
+              },
+            },
+          ],
         },
         {
-            test: /\.(png|jpe?g|gif)$/i,
-            use: [
-                {
-                    loader: 'file-loader',
-                },
-            ],
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+            },
+          ],
         },
         // JS
         {
@@ -104,9 +104,9 @@ module.exports = () => {
         filename: 'styles.css',
       }),
       new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: path.join(__dirname, 'public', 'index.ejs'),
-          version: JSON.stringify(require('./package.json').version + '-' + getGitVersion())
+        filename: 'index.html',
+        template: path.join(__dirname, 'public', 'index.ejs'),
+        version: JSON.stringify(`${pkg.version}-${getGitVersion()}`),
       }),
     ],
   };

@@ -5,7 +5,7 @@
   "description": "APP developed in the context of Hackovid to offer a solution to support shopping",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --config ./webpack.config.dev.js",
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --config config/webpack.config.dev.js",
     "pro": "webpack -p",
     "depploy:minor": "yarn version --minor && git push",
     "test": "jest",
