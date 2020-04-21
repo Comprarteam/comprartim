@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'food';
+  src: url('./icons/food.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="food-icon-"], [class*="food-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'food' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.food-icon-farmacia:before {
+  content: "\e900";
+}
+.food-icon-peix:before {
+  content: "\e901";
+}
+.food-icon-poma:before {
+  content: "\e902";
+}
+.food-icon-supermercat:before {
+  content: "\e903";
+}
+.food-icon-croissant:before {
+  content: "\e904";
+}
+.food-icon-pollastre:before {
+  content: "\e905";
+}
