@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pkg = require('./package.json');
 const { getGitVersion } = require('./bin/get-git-version');
@@ -108,6 +109,13 @@ module.exports = () => {
         template: path.join(__dirname, 'public', 'index.ejs'),
         version: JSON.stringify(`${pkg.version}-${getGitVersion()}`),
       }),
+      new CopyWebpackPlugin([
+        {
+          from: './public',
+          to: '',
+          ignore: ['index.ejs'],
+        },
+      ]),
     ],
   };
 };
