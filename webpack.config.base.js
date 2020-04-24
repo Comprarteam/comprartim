@@ -61,25 +61,6 @@ module.exports = () => {
             },
           ],
         },
-        {
-          test: /\.(woff|woff2|ttf|otf|eot|svg)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                outputPath: 'fonts',
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(png|jpe?g|gif)$/i,
-          use: [
-            {
-              loader: 'file-loader',
-            },
-          ],
-        },
         // JS
         {
           test: /\.(js|jsx)$/, // include .jsx files

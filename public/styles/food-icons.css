@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'food';
-  src: url('./icons/food.woff') format('woff');
+  src: url('../fonts/food.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
