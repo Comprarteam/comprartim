@@ -1,23 +1,26 @@
-var cacheName = 'comprartim-v1.2.0';
-var filesToCache = [
+const cacheName = 'comprartim-v1.3.0';
+const filesToCache = [
   './',
   './index.html',
   './main.js',
   './styles.css',
-  './food-icons.css',
-  './manifest.json'
+  './manifest.json',
+  './fonts',
+  './icons',
+  './styles/',
 ];
-self.addEventListener('install', function(e) {
+
+self.addEventListener('install', (e) => {
   console.log('[ServiceWorker] Install');
   self.skipWaiting();
   e.waitUntil(
     caches.open(cacheName).then((cache) => {
       console.log('[ServiceWorker] Caching app shell');
       return cache.addAll(filesToCache);
-    })
+    }),
   );
 });
-self.addEventListener('activate',  event => {
+self.addEventListener('activate', (event) => {
   var cacheKeepList = [cacheName];
   console.log('activate service worker');
   event.waitUntil(
@@ -27,13 +30,13 @@ self.addEventListener('activate',  event => {
           return caches.delete(key);
         }
       }));
-    })
+    }),
   );
 });
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request, {ignoreSearch:true}).then(response => {
-      return response || fetch(event.request);
-    })
+    caches.match(event.request, { ignoreSearch:true }).then((response) => (
+      response || fetch(event.request)
+    )),
   );
 });
