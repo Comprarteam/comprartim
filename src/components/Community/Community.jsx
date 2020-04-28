@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCommunity } from '../../services/Community';
 import Header from '../Header/Header';
-import RequestsList from '../RequestsList/RequestsList';
+import ActionItem from './ActionItem';
 import styles from './Community.scss';
 
 const Community = () => {
@@ -32,12 +32,35 @@ const Community = () => {
   return (
     <>
       <Header title={`Comunitat ${nameCommunity}`} />
-      <div className={`container ${styles.container}`}>
-        <Link className={`btn-small waves-effect waves-light red ${styles['new-btn']}`} to="/new-request">
-          <i className="material-icons left">add_box</i>
-          Nova sol·licitud
-        </Link>
-        <RequestsList communityId={communityId} userId={userId} />
+      <div className="container">
+        <h2>Què vols fer avui?</h2>
+        <p className={styles.subtitle}>Demana</p>
+        <ul>
+          <ActionItem icon="add_box" linkTo="/new-request" textColor="indigo">
+            Crear una nova sol·licitud
+          </ActionItem>
+          <ActionItem icon="list" linkTo="/requests">
+            Veure les meves sol·licituds
+          </ActionItem>
+        </ul>
+        <p className={styles.subtitle}>Ajuda</p>
+        <ul>
+          <ActionItem icon="shopping_basket" linkTo="/new-request">
+            Anar a comprar
+          </ActionItem>
+          <ActionItem icon="chat" linkTo="/chat">
+            Obrir el xat
+          </ActionItem>
+          <ActionItem icon="check" linkTo="/chat">
+            Entregar comanda
+          </ActionItem>
+        </ul>
+        <p className={styles.subtitle}>Altres</p>
+        <ul>
+          <ActionItem icon="transfer_within_a_station" linkTo="/" textColor="red">
+            Canviar de comunitat
+          </ActionItem>
+        </ul>
       </div>
     </>
   );

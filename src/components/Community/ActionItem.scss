@@ -1,0 +1,20 @@
+.action-item {
+  border-bottom: 1px solid #ccc;
+  font-size: 1.25rem;
+  margin: 0 -20px;
+
+  &:first-child {
+    border-top: 1px solid #ccc;
+  }
+}
+
+.action-link {
+  align-items: center;
+  display: flex;
+  flex: auto;
+  padding: 15px;
+}
+
+.next-icon {
+  flex: 1;
+}
