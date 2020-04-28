@@ -2,12 +2,18 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const dotenv = require('dotenv');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const pkg = require('./package.json');
+const { getGitVersion } = require('./bin/get-git-version');
+
 
 module.exports = () => {
   // Entry path
   const entryPath = path.join('src');
   const entryFile = 'index.jsx';
   const outputPath = 'dist';
+  const outPutFileName = 'main.js';
   const env = dotenv.config().parsed;
   const envKeys = Object.keys(env).reduce((prevParam, next) => {
     const prev = prevParam;
@@ -26,12 +32,14 @@ module.exports = () => {
     },
     output: {
       path: path.join(__dirname, outputPath),
+      filename: outPutFileName,
     },
     module: {
       rules: [
         // SCSS
         {
           test: /\.(css|scss)$/,
+          exclude: [/public/],
           use: [
             { loader: MiniCssExtractPlugin.loader },
             {
@@ -47,7 +55,7 @@ module.exports = () => {
               loader: 'postcss-loader',
               options: {
                 config: {
-                  path: './webpack/postcss.config.js',
+                  path: './config/postcss.config.js',
                 },
               },
             },
@@ -81,11 +89,23 @@ module.exports = () => {
       },
       extensions: ['.js', '.jsx', '.json'],
     },
-    plugins: (() => ([
+    plugins: [
       new MiniCssExtractPlugin({
         filename: 'styles.css',
       }),
       new webpack.DefinePlugin(envKeys),
-    ]))(),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: path.join(__dirname, 'public', 'index.ejs'),
+        version: JSON.stringify(`${pkg.version}-${getGitVersion()}`),
+      }),
+      new CopyWebpackPlugin([
+        {
+          from: './public',
+          to: '',
+          ignore: ['index.ejs'],
+        },
+      ]),
+    ],
   };
 };

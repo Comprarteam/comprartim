@@ -8,6 +8,7 @@
   "globals": {
     "document": true,
     "M": true,
+    "self": true,
     "window": true
   },
   "rules": {

@@ -12,6 +12,7 @@ import Community from './components/Community/Community';
 
 import './index.scss';
 
+
 ReactDOM.render(
   <HashRouter basename="/">
     <Route exact path="/new-community" component={NewCommunity} />
