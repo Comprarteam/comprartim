@@ -1,7 +1,7 @@
 # comp(Я)artim
 Evitem desplaçaments, evitem contagis!
 
-See it in: https://ixorx.github.io/comprartim
+See it in: https://comprarteam.github.io/comprartim
 
 **comp(Я)artim Backend project**: https://github.com/cescalonso/comprartim-backend 
 
