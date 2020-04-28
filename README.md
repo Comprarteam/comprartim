@@ -14,11 +14,6 @@ Recommended use yarn but you can use npm. For development you should use yarn.
 ```
 
 ## Set up the project in order to work locally
-You need to download the entry files from gh-pages branch:
-```
-> git worktree add dist gh-pages
-```
-
 Execute the following in the command line:
 ```
 > echo "FIREBASE_API_KEY=<API_KEY> firebase" > .env
