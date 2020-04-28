@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const dotenv = require('dotenv');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pkg = require('./package.json');
 const { getGitVersion } = require('./bin/get-git-version');
+
 
 module.exports = () => {
   // Entry path
@@ -12,6 +14,12 @@ module.exports = () => {
   const entryFile = 'index.jsx';
   const outputPath = 'dist';
   const outPutFileName = 'main.js';
+  const env = dotenv.config().parsed;
+  const envKeys = Object.keys(env).reduce((prevParam, next) => {	
+    const prev = prevParam;	
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);	
+    return prev;	
+  }, {});
 
   return {
     entry: path.join(__dirname, entryPath, entryFile),
@@ -85,6 +93,7 @@ module.exports = () => {
       new MiniCssExtractPlugin({
         filename: 'styles.css',
       }),
+      new webpack.DefinePlugin(envKeys),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: path.join(__dirname, 'public', 'index.ejs'),
