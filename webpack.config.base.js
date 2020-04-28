@@ -15,10 +15,10 @@ module.exports = () => {
   const outputPath = 'dist';
   const outPutFileName = 'main.js';
   const env = dotenv.config().parsed;
-  const envKeys = Object.keys(env).reduce((prevParam, next) => {	
-    const prev = prevParam;	
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);	
-    return prev;	
+  const envKeys = Object.keys(env).reduce((prevParam, next) => {
+    const prev = prevParam;
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
   }, {});
 
   return {
