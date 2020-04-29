@@ -6,7 +6,10 @@ const ActionItem = ({
   linkTo, icon, children, textColor = 'black',
 }) => (
   <li className={styles['action-item']}>
-    <Link className={`waves-effect waves-light ${styles['action-link']} ${textColor}-text`} to={linkTo}>
+    <Link
+      className={`white waves-effect waves-light ${styles['action-link']} ${textColor}-text`}
+      to={linkTo}
+    >
       <i className="material-icons left">{ icon }</i>
       <div>{ children }</div>
       <div className={styles['next-icon']}>

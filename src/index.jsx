@@ -19,6 +19,9 @@ ReactDOM.render(
     <Route exact path="/login" component={LoginPage} />
     <Route exact path="/new-request" component={NewRequest} />
     <Route exact path="/requests" component={RequestsList} />
+    <Route exact path="/shop" component={RequestsList} />
+    <Route exact path="/chat" component={RequestsList} />
+    <Route exact path="/deliver" component={RequestsList} />
     <Route exact path="/new-user" component={NewUser} />
     <Route exact path="/community/:communityId/print" component={PrintPage} />
     <Route

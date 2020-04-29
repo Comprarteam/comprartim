@@ -1,0 +1,20 @@
+.tabs-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.tab {
+  flex-grow: 1;
+  text-align: center;
+  border-bottom: 3px solid #536dfe;
+}
+
+.tab-link {
+  font-size: 2rem;
+}
+
+.tab-active {
+  border-bottom: 3px solid #fff;
+}

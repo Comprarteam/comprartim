@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { actionRequest, getRequestsFromCommunity } from '../../services/Requests';
+import Header from '../Header/Header';
+import Spinner from '../Spinner/Spinner';
 import styles from './RequestsList.scss';
+import Tabs from './Tabs';
 
-const RequestsList = ({ communityId, userId: loggedUserId }) => {
+const RequestsList = () => {
   const [requests, setRequests] = useState([]);
   const [requestFinished, setRequestFinished] = useState(false);
   const history = useHistory();
+  const { pathname } = useLocation();
+  const communityId = window.localStorage.getItem('communityId');
+  const loggedUserId = window.localStorage.getItem('userId');
 
   const getRequests = async () => {
     const response = await getRequestsFromCommunity(communityId);
@@ -79,38 +85,48 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
   };
 
   return (
-    <div className={styles['requests-container']}>
-      {requests.map((request) => {
-        const {
-          buyerId, categoryId, chatId, createdAt, id, ownerId, status, productsList,
-        } = request;
-        // eslint-disable-next-line no-underscore-dangle
-        const creationDate = toDateTime(createdAt && createdAt._seconds);
-        return (
-          <div key={id} className={`${styles.item} ${getColor(status)} lighten-5`}>
-            <div className={`${getColor(status)} lighten-2 ${styles['owner-date']}`}>
-              <div>{ownerId}</div>
-              <div>{creationDate}</div>
-            </div>
-            <div className={styles.products}>
-              <div className={`${styles.icon} food-icon-${categoryId}`} />
-              <ul>
-                {(productsList).map((product) => (
-                  <li key={`${request.id}-${product}`}>{product}</li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.action}>
-              <button
-                type="button"
-                tabIndex={0}
-                className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
-                onClick={() => handleClickRequest(request)}
-                onKeyPress={() => handleClickRequest(request)}
-              >
-                {renderTextButton(status)}
-              </button>
-              {status === 'accepted' && (loggedUserId === ownerId || loggedUserId === buyerId)
+    <>
+      <Header title="Sol·licituds" />
+      <Tabs />
+      <div className="container">
+        <div className={styles['requests-container']}>
+          {requests
+            .filter(({ status }) => (
+              (status === 'pending' && pathname === '/requests')
+              || ((status === 'pending' || status === 'accepted') && pathname === '/shop')
+              || ((status === 'accepted' || status === 'closed')  && pathname === '/deliver')
+            ))
+            .map((request) => {
+              const {
+                buyerId, categoryId, chatId, createdAt, id, ownerId, status, productsList,
+              } = request;
+              // eslint-disable-next-line no-underscore-dangle
+              const creationDate = toDateTime(createdAt && createdAt._seconds);
+              return (
+                <div key={id} className={`${styles.item} ${getColor(status)} lighten-5`}>
+                  <div className={`${getColor(status)} lighten-2 ${styles['owner-date']}`}>
+                    <div>{ownerId}</div>
+                    <div>{creationDate}</div>
+                  </div>
+                  <div className={styles.products}>
+                    <div className={`${styles.icon} food-icon-${categoryId}`} />
+                    <ul>
+                      {(productsList).map((product) => (
+                        <li key={`${request.id}-${product}`}>{product}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={styles.action}>
+                    <button
+                      type="button"
+                      tabIndex={0}
+                      className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
+                      onClick={() => handleClickRequest(request)}
+                      onKeyPress={() => handleClickRequest(request)}
+                    >
+                      {renderTextButton(status)}
+                    </button>
+                    {status === 'accepted' && (loggedUserId === ownerId || loggedUserId === buyerId)
                 && (
                   <button
                     type="button"
@@ -123,22 +139,24 @@ const RequestsList = ({ communityId, userId: loggedUserId }) => {
                     {`Xat amb ${getContact(ownerId, buyerId)}`}
                   </button>
                 )}
-            </div>
-          </div>
-        );
-      })}
+                  </div>
+                </div>
+              );
+            })}
+          {!requestFinished && <Spinner />}
+          {requests.length === 0 && requestFinished && (
+          <div className="center">
+            <p className={styles.text}>Crea una sol·licitud per començar.</p>
 
-      {requests.length === 0 && requestFinished && (
-        <div className="center">
-          <p className={styles.text}>Crea una sol·licitud per començar.</p>
-
-          <Link className="btn-small waves-effect waves-light indigo lighten-1" to="/new-request">
-            <i className="material-icons left">add_box</i>
+            <Link className="btn-small waves-effect waves-light indigo lighten-1" to="/new-request">
+              <i className="material-icons left">add_box</i>
             Nova sol·licitud
-          </Link>
+            </Link>
+          </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 

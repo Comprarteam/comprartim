@@ -36,10 +36,10 @@ const Community = () => {
         <h2>Què vols fer avui?</h2>
         <p className={styles.subtitle}>Demana</p>
         <ul>
-          <ActionItem icon="add_box" linkTo="/new-request" textColor="indigo">
+          <ActionItem icon="add_box" linkTo="/new-request">
             Crear una nova sol·licitud
           </ActionItem>
-          <ActionItem icon="list" linkTo="/requests">
+          <ActionItem icon="list" linkTo="/requests" textColor="indigo">
             Veure les meves sol·licituds
           </ActionItem>
         </ul>
