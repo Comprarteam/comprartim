@@ -14,7 +14,7 @@ const Tabs = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="indigo accent-2 white-text">
+    <div className={`${styles.tabs} indigo accent-2 white-text`}>
       <ul className={styles['tabs-wrapper']}>
         <Tab active={pathname === '/requests'} icon="list" linkTo="/requests" />
         <Tab active={pathname === '/shop'} icon="shopping_basket" linkTo="/shop" />

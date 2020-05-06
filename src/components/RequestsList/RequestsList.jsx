@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { actionRequest, getRequestsFromCommunity } from '../../services/Requests';
 import Header from '../Header/Header';
 import Spinner from '../Spinner/Spinner';
+import Request from './Request';
 import styles from './RequestsList.scss';
 import Tabs from './Tabs';
 
 const RequestsList = () => {
   const [requests, setRequests] = useState([]);
   const [requestFinished, setRequestFinished] = useState(false);
-  const history = useHistory();
   const { pathname } = useLocation();
   const communityId = window.localStorage.getItem('communityId');
   const loggedUserId = window.localStorage.getItem('userId');
@@ -36,113 +36,25 @@ const RequestsList = () => {
     }
   };
 
-  const getContact = (ownerId, buyerId) => (
-    loggedUserId === ownerId ? buyerId : ownerId
-  );
-
-  const handleClickChat = (contact, chatId) => {
-    history.push(`/chat/${contact}/${loggedUserId}/${chatId}`);
-  };
-
   useEffect(() => {
     getRequests();
   }, []);
 
-  const renderTextButton = (status) => {
-    let statusText;
-    switch (status) {
-      case 'pending':
-        statusText = 'Comprar';
-        break;
-      case 'accepted':
-        statusText = 'Entregat';
-        break;
-      default:
-        statusText = 'Finalitzat';
-    }
-    return statusText;
-  };
-
-  const toDateTime = (secs) => {
-    const time = new Date(1970, 0, 1); // Epoch
-    time.setSeconds(secs);
-    return time.toLocaleDateString();
-  };
-
-  const getColor = (status) => {
-    let color;
-    switch (status) {
-      case 'pending':
-        color = 'pink';
-        break;
-      case 'accepted':
-        color = 'amber';
-        break;
-      default:
-        color = 'green';
-    }
-    return color;
-  };
-
   return (
     <>
-      <Header title="Sol·licituds" />
+      <Header title="Sol·licituds" fixed />
       <Tabs />
       <div className="container">
         <div className={styles['requests-container']}>
           {requests
             .filter(({ status }) => (
-              (status === 'pending' && pathname === '/requests')
+              (pathname === '/requests')
               || ((status === 'pending' || status === 'accepted') && pathname === '/shop')
-              || ((status === 'accepted' || status === 'closed')  && pathname === '/deliver')
+              || ((status === 'accepted' || status === 'closed') && pathname === '/deliver')
             ))
-            .map((request) => {
-              const {
-                buyerId, categoryId, chatId, createdAt, id, ownerId, status, productsList,
-              } = request;
-              // eslint-disable-next-line no-underscore-dangle
-              const creationDate = toDateTime(createdAt && createdAt._seconds);
-              return (
-                <div key={id} className={`${styles.item} ${getColor(status)} lighten-5`}>
-                  <div className={`${getColor(status)} lighten-2 ${styles['owner-date']}`}>
-                    <div>{ownerId}</div>
-                    <div>{creationDate}</div>
-                  </div>
-                  <div className={styles.products}>
-                    <div className={`${styles.icon} food-icon-${categoryId}`} />
-                    <ul>
-                      {(productsList).map((product) => (
-                        <li key={`${request.id}-${product}`}>{product}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className={styles.action}>
-                    <button
-                      type="button"
-                      tabIndex={0}
-                      className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
-                      onClick={() => handleClickRequest(request)}
-                      onKeyPress={() => handleClickRequest(request)}
-                    >
-                      {renderTextButton(status)}
-                    </button>
-                    {status === 'accepted' && (loggedUserId === ownerId || loggedUserId === buyerId)
-                && (
-                  <button
-                    type="button"
-                    tabIndex={0}
-                    className={`btn-small waves-effect waves-light white-text ${getColor(status)} darken-3`}
-                    onClick={() => handleClickChat(getContact(ownerId, buyerId), chatId)}
-                    onKeyPress={() => handleClickChat(getContact(ownerId, buyerId), chatId)}
-                  >
-                    <i className="material-icons left">chat</i>
-                    {`Xat amb ${getContact(ownerId, buyerId)}`}
-                  </button>
-                )}
-                  </div>
-                </div>
-              );
-            })}
+            .map(
+              (request) => <Request request={request} handleClickRequest={handleClickRequest} />,
+            )}
           {!requestFinished && <Spinner />}
           {requests.length === 0 && requestFinished && (
           <div className="center">
