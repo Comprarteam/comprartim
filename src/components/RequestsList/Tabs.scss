@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 100px;
+  top: 90px;
   z-index: 10;
 }
 
@@ -16,13 +16,25 @@
 .tab {
   flex-grow: 1;
   text-align: center;
-  border-bottom: 3px solid #536dfe;
+  border-bottom: 5px solid #536dfe;
 }
 
 .tab-link {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  justify-content: center;
+}
+
+.tab-icon {
   font-size: 2rem;
 }
 
 .tab-active {
-  border-bottom: 3px solid #fff;
+  border-bottom: 5px solid #fff;
+}
+
+.screen-reader {
+  display: none;
 }

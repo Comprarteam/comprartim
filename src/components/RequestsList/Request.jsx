@@ -78,7 +78,7 @@ const Request = ({ request, handleClickRequest }) => {
         >
           {renderTextButton(status)}
         </button>
-        {status === 'accepted' && (loggedUserId === ownerId || loggedUserId === buyerId)
+        {status === 'accepted' && (loggedUserId !== ownerId || loggedUserId !== buyerId)
         && (
           <button
             type="button"

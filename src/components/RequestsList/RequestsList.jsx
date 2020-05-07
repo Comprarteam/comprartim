@@ -14,6 +14,18 @@ const RequestsList = () => {
   const communityId = window.localStorage.getItem('communityId');
   const loggedUserId = window.localStorage.getItem('userId');
 
+  let title = '';
+  switch (pathname) {
+    case '/shop':
+      title = 'Anar a comprar';
+      break;
+    case '/deliver':
+      title = 'Entregar comanda';
+      break;
+    default:
+      title = 'Les meves sol·licituds';
+  }
+
   const getRequests = async () => {
     const response = await getRequestsFromCommunity(communityId);
     setRequests(response.data);
@@ -40,31 +52,43 @@ const RequestsList = () => {
     getRequests();
   }, []);
 
+  const filterByUser = ({ status, ownerId, buyerId }) => (
+    (pathname === '/requests' && ownerId === loggedUserId)
+    || (pathname === '/shop' && (status === 'pending' || (status === 'accepted' && buyerId === loggedUserId)))
+    || (pathname === '/chat' && status === 'accepted' && buyerId === loggedUserId && ownerId !== loggedUserId)
+    || (pathname === '/deliver' && buyerId === loggedUserId && (status === 'accepted' || status === 'closed'))
+  );
+
   return (
     <>
-      <Header title="Sol·licituds" fixed />
+      <Header title={title} fixed />
       <Tabs />
       <div className="container">
         <div className={styles['requests-container']}>
           {requests
-            .filter(({ status }) => (
-              (pathname === '/requests')
-              || ((status === 'pending' || status === 'accepted') && pathname === '/shop')
-              || ((status === 'accepted' || status === 'closed') && pathname === '/deliver')
-            ))
+            .filter(filterByUser)
             .map(
-              (request) => <Request request={request} handleClickRequest={handleClickRequest} />,
+              (request) => (
+                <Request
+                  key={request.id}
+                  request={request}
+                  handleClickRequest={handleClickRequest}
+                />
+              ),
             )}
           {!requestFinished && <Spinner />}
-          {requests.length === 0 && requestFinished && (
-          <div className="center">
-            <p className={styles.text}>Crea una sol·licitud per començar.</p>
-
-            <Link className="btn-small waves-effect waves-light indigo lighten-1" to="/new-request">
-              <i className="material-icons left">add_box</i>
-            Nova sol·licitud
-            </Link>
-          </div>
+          {(requests.length === 0 || pathname === '/requests') && requestFinished && (
+            <div className="center">
+              <p className={styles.text}>
+                {requests.length === 0 && requestFinished
+                  ? 'Crea una sol·licitud per començar.'
+                  : 'Necessites quelcom més?'}
+              </p>
+              <Link className="btn-small waves-effect waves-light indigo lighten-1" to="/new-request">
+                <i className="material-icons left">add_box</i>
+                Nova sol·licitud
+              </Link>
+            </div>
           )}
         </div>
       </div>

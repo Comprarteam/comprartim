@@ -42,16 +42,19 @@ const Community = () => {
           <ActionItem icon="list" linkTo="/requests" textColor="indigo">
             Veure les meves sol·licituds
           </ActionItem>
+          <ActionItem icon="chat" linkTo="/chat">
+            Obrir el xat
+          </ActionItem>
         </ul>
         <p className={styles.subtitle}>Ajuda</p>
         <ul>
-          <ActionItem icon="shopping_basket" linkTo="/new-request">
+          <ActionItem icon="shopping_basket" linkTo="/shop">
             Anar a comprar
           </ActionItem>
           <ActionItem icon="chat" linkTo="/chat">
             Obrir el xat
           </ActionItem>
-          <ActionItem icon="check" linkTo="/chat">
+          <ActionItem icon="check" linkTo="/deliver">
             Entregar comanda
           </ActionItem>
         </ul>
