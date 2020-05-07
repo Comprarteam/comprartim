@@ -25,6 +25,7 @@ const LoginPage = () => {
       <div className={styles['login-container']}>
         {usersLists.map((user) => (
           <div
+            key={user}
             role="button"
             tabIndex={0}
             className={`${styles['login-button']} btn-small teal lighten-2 white-text`}

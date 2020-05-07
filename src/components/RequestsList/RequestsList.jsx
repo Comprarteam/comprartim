@@ -22,6 +22,9 @@ const RequestsList = () => {
     case '/deliver':
       title = 'Entregar comanda';
       break;
+    case '/chat':
+      title = 'Xat';
+      break;
     default:
       title = 'Les meves sol·licituds';
   }

@@ -2,43 +2,31 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './RequestsList.scss';
 
+const STATUS_CONFIG = {
+  pending: {
+    color: 'pink',
+    text: 'Comprar',
+  },
+  accepted: {
+    color: 'amber',
+    text: 'Entregat',
+  },
+  closed: {
+    color: 'green',
+    text: 'Finalitzat',
+  },
+};
+
 const Request = ({ request, handleClickRequest }) => {
   const loggedUserId = window.localStorage.getItem('userId');
   const history = useHistory();
-  const renderTextButton = (status) => {
-    let statusText;
-    switch (status) {
-      case 'pending':
-        statusText = 'Comprar';
-        break;
-      case 'accepted':
-        statusText = 'Entregat';
-        break;
-      default:
-        statusText = 'Finalitzat';
-    }
-    return statusText;
-  };
+  const getColor = (status) => STATUS_CONFIG[status] && STATUS_CONFIG[status].color;
+  const getButtonText = (status) => STATUS_CONFIG[status] && STATUS_CONFIG[status].text;
 
   const toDateTime = (secs) => {
     const time = new Date(1970, 0, 1); // Epoch
     time.setSeconds(secs);
     return time.toLocaleDateString();
-  };
-
-  const getColor = (status) => {
-    let color;
-    switch (status) {
-      case 'pending':
-        color = 'pink';
-        break;
-      case 'accepted':
-        color = 'amber';
-        break;
-      default:
-        color = 'green';
-    }
-    return color;
   };
 
   const getContact = (ownerId, buyerId) => (
@@ -76,9 +64,9 @@ const Request = ({ request, handleClickRequest }) => {
           onClick={() => handleClickRequest(request)}
           onKeyPress={() => handleClickRequest(request)}
         >
-          {renderTextButton(status)}
+          {getButtonText(status)}
         </button>
-        {status === 'accepted' && (loggedUserId !== ownerId || loggedUserId !== buyerId)
+        {status === 'accepted' && loggedUserId !== ownerId && loggedUserId === buyerId
         && (
           <button
             type="button"
