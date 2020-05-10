@@ -74,7 +74,7 @@ const Chat = ({ match }) => {
 
   return (
     <div className="App">
-      <Header title="Xat" />
+      <Header title={`Xat amb ${contact}`} />
       <Widget
         handleNewUserMessage={handleNewUserMessage}
         title="Xat de sol·licitud de compra"

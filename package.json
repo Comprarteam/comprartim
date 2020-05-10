@@ -49,8 +49,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
+    "@firebase/app-types": "0.6.0",
+    "@firebase/util": "0.2.45",
     "dotenv": "^8.2.0",
-    "firebase": "^7.13.2",
     "firebase-chat-ready-api": "^3.0.12",
     "node-fetch": "^2.6.0",
     "react": "^16.10.2",
@@ -58,5 +59,8 @@
     "react-dom": "^16.10.2",
     "react-qr-svg": "^2.2.1",
     "react-router-dom": "^5.1.2"
+  },
+  "engines": {
+    "node": "<11.0.0"
   }
 }

@@ -32,7 +32,7 @@ const ChooseProducts = ({ categorySelected, onClickConfirmRequest }) => {
 
   return (
     <div className={styles.products}>
-      <p>{`Qùe necessites de la ${categorySelected.name}?`}</p>
+      <p>{`Què necessites ${categorySelected.name === 'Supermercat' ? 'del' : 'de la'} ${categorySelected.name}?`}</p>
       <div className={`${styles['products-chips']} chips chips-placeholder`}>
         <input className={styles['chips-input']} />
       </div>
