@@ -1,7 +1,7 @@
 {
   "name": "comprartim",
   "homepage": "https://ixorx.github.io/comprartim/",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "APP developed in the context of Hackovid to offer a solution to support shopping",
   "main": "index.js",
   "scripts": {
