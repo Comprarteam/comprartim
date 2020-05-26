@@ -1,4 +1,4 @@
-const cacheName = 'comprartim-v1.3.0';
+const cacheName = 'comprartim-v2.0.0';
 const filesToCache = [
   './',
   './index.html',
