@@ -50,7 +50,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@firebase/app-types": "0.6.0",
-    "@firebase/util": "0.2.45",
+    "@firebase/util": "0.3.4",
     "dotenv": "^8.2.0",
     "firebase-chat-ready-api": "^3.0.12",
     "node-fetch": "^2.6.0",
